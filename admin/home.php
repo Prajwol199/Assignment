@@ -1,6 +1,9 @@
 <?php
 require_once '../admin/controller/database.php';
 require_once '../admin/controller/User.php';
+require_once '../admin/controller/PageController.php';
+require_once '../admin/controller/ImageController.php';
+
 
 
 $page = $_GET['page'] ? $_GET['page'] : 'dashboard';

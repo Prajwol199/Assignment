@@ -40,10 +40,12 @@ class Model{
 
 
     public function allUser($data=array()){
+         if (empty($data)) return false;
     	return $this->db->select($this->tableName,$data);
     }
 
     public function delete($data=array()){
+         if (empty($data)) return false;
     	return $this->db->delete($this->tableName,$data);
     }
 
@@ -53,6 +55,7 @@ class Model{
     }
 
     public function updatePage($data,$array){
+         if (empty($data)) return false;
         return $this->db->update($this->tableName,$data,$array);
     }
 
@@ -63,10 +66,12 @@ class Model{
 
 
     public function dropdown($data){
+         if (empty($data)) return false;
         return $this->db->select1($this->tableName,$data);
     }
 
     public function loginSelect($data,$field){
+         if (empty($data)) return false;
         return $this->db->select($this->table,$data,$field);
     }
 
@@ -102,6 +107,7 @@ class Model{
     }
 
     public function editUser($data,$array){
+         if (empty($data)) return false;
     	return $this->db->select($this->tableName,$data,$array);
     }
     public function editAdmin($data,$array){

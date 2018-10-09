@@ -2,7 +2,7 @@
 
 $id=$_GET['id'];
 
-$select = new User();
+$select = new PageController();
 $field = $select->getUsers($id);
 
 foreach ($field as $key => $value) {

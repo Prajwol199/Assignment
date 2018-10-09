@@ -1,10 +1,10 @@
 <?php
 
-$add = new User();
+$add = new PageController();
 $field=$add->getUser();
 
 if(isset($_POST['delete-page'])){
-    $objUser = new User();
+    $objUser = new PageController();
     $objUser->deleteUsers();
 }
 
@@ -18,14 +18,6 @@ if(isset($_POST['delete-page'])){
     </button></a>
   </div>
 </div>
-
-<!-- <?php
-if (isset($_SESSION['msg'])):?>
-<div class="alert alert-success"><i class="glyphicon glyphicon-warning-sign"></i>
-<?= $_SESSION['msg']; ?>
-</div>
-<?php unset($_SESSION['msg']) ?>
-<?php endif; ?> -->
 
 <table class="table">
   <tr>

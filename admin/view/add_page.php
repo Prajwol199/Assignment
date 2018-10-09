@@ -1,6 +1,6 @@
 <?php
 
-$add = new User();
+$add = new PageController();
 $add->AddUser();
 ?>
 

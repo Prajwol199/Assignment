@@ -1,5 +1,5 @@
 <?php
-$dropdown = new User();
+$dropdown = new ImageController();
 // $value= $dropdown->getPage();
 
 if(isset($_POST['image-upload'])) {
