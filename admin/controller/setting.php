@@ -1,6 +1,6 @@
 <?php
-
-require_once 'database.php';
+global $server_root;
+require_once __dir__.'/../model/database.php';
 $conn = new database(); 
 
 $sql = 'SELECT server_root FROM setting';
@@ -14,4 +14,3 @@ while($row=mysqli_fetch_assoc($result)){
 foreach ($rows as $key => $value) {
 	$server_root = $value['server_root'];
 }
-global $server_root;

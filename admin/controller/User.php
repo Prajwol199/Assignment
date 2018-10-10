@@ -1,8 +1,8 @@
 <?php
-require_once 'Model.php';
+require_once __dir__.'/DatabaseController.php';
 session_start();
 
-class User extends Model{
+class User extends DatabaseController{
 
 	protected $tableName = 'pages';
 	protected $table = 'users';
@@ -50,13 +50,14 @@ class User extends Model{
 	}
 
 
-	public function isLoginUser(){
-		$_SESSION['msg']="ram";
+	public function isLoginUser(){;
 
 		if(isset($_POST['email']) && isset($_POST['password'])){
 			$email=$_POST['email'];
 			$password=$_POST['password'];
-			$remember=$_POST['remember'];
+			if(isset($_POST['remember'])){
+				$remember=$_POST['remember'];
+			}
 
 				$data=array(
 			 		'*'
@@ -77,8 +78,7 @@ class User extends Model{
                 	$_SESSION['user']="user";
 			 		header('Location:index.php');
 			 	}else{
-			 		$_SESSION['err_msg']="Invalid user name and password";
-			 		header('Location:login.php'); 
+			 		echo "Invalid email and password";
 			 	}
 	 	}
 				
@@ -112,7 +112,7 @@ class User extends Model{
 
 		if($delete == true){
 			unlink('../admin/static/images/pageImage/' .$name);
-			header('Location:home.php?page=view_image&&_uid='.$page_id_redirect);
+			header('Location:home.php?page=view_image&id='.$page_id_redirect);
 		}
 	}
 
@@ -152,7 +152,7 @@ class User extends Model{
 
 				$meta_result = $this->meta_save($meta);
 				if($meta_result == true){
-					header('Location:home.php?page=view_image&&_uid='.$id);
+					header('Location:home.php?page=view_image&id='.$id);
 				}
 		}
 	}

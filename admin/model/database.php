@@ -7,8 +7,6 @@ define('DB_NAME', 'phpassignment');
 class Database
 {
 
-    public $_connection = '';
-
     public static $_instantiate = '';
 
     public function __construct()
@@ -21,7 +19,6 @@ class Database
     {
 
         $con = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
-        $this->bdh = $con;
         // Check connection
         if (mysqli_connect_errno())
         {
@@ -48,13 +45,11 @@ class Database
 
                 foreach( $data as $field => $value ){
                     $sql .= $field . '= "' . $value . '",';
-                }
-
+                }echo $sql;
                 $sql = rtrim( $sql, ',' );
                 $result = mysqli_query($this->connection(),$sql);
                 return $result;
             }
-
             return false;
 
     }
@@ -97,24 +92,8 @@ class Database
             return false;
         }
 
-    public function select($tableName = '',$data="",$criteria=""){
-            if( is_array( $data ) && count( $data ) > 0 ){
-                foreach ($data as $value) {
-                    $sql = " SELECT " . $value . ' FROM ' . $tableName;  
-                        if (!empty($criteria)) {
-                        $sql .= " WHERE " ;
-                        foreach ($criteria as $key => $value) {
-                            $sql .=$key.'="' .$value. '" AND ';                     
-                        }    
-                        $sql = substr($sql,0,-4); 
-                    }               
-                }
-               $result= mysqli_query($this->connection(),$sql);
-               return $result;
-            }       
-        }
 
-         public function select1($tableName = '',$data="",$criteria=""){
+         public function select($tableName = '',$data="",$criteria=""){
             if( is_array( $data ) && count( $data ) > 0 ){
                 $sql="SELECT ";
                 foreach ($data as $value) {
@@ -148,6 +127,22 @@ class Database
             return false;
          }
 
+    // public function select($tableName = '',$data="",$criteria=""){
+    //         if( is_array( $data ) && count( $data ) > 0 ){
+    //             foreach ($data as $value) {
+    //                 $sql = " SELECT " . $value . ' FROM ' . $tableName;  
+    //                     if (!empty($criteria)) {
+    //                     $sql .= " WHERE " ;
+    //                     foreach ($criteria as $key => $value) {
+    //                         $sql .=$key.'="' .$value. '" AND ';                     
+    //                     }    
+    //                     $sql = substr($sql,0,-4); 
+    //                 }               
+    //             }
+    //            $result= mysqli_query($this->connection(),$sql);
+    //            return $result;
+    //         }       
+    //     }
 }
 
 

@@ -1,7 +1,8 @@
 <?php
-require_once 'Database.php';
 
-class Model{
+require_once __dir__.'/../model/database.php';
+
+class DatabaseController{
 	protected $tableName;
 	protected $table;
     protected $table_image;
@@ -19,7 +20,6 @@ class Model{
 
     public function save($data = array()){
     	 if (empty($data)) return false;
-    	 //return to User//
     	 return $this->db->insert($this->tableName, $data);
     }
 
@@ -67,7 +67,7 @@ class Model{
 
     public function dropdown($data){
          if (empty($data)) return false;
-        return $this->db->select1($this->tableName,$data);
+        return $this->db->select($this->tableName,$data);
     }
 
     public function loginSelect($data,$field){
@@ -82,18 +82,18 @@ class Model{
 
     public function displayImage($data){
         if(empty($data)) return false;
-        return $this->db->select1($this->table_image,$data);
+        return $this->db->select($this->table_image,$data);
     }
 
     //code for image in image manager
     public function selectId($data,$id){
         if(empty($data)) return false;
-        return $this->db->select1($this->tableName,$data,array('id'=>"$id"));
+        return $this->db->select($this->tableName,$data,array('id'=>"$id"));
     }
 
     public function view_image($data,$id){
         if(empty($data)) return false;
-        return $this->db->select1($this->table_meta,$data,array('page_id'=>"$id"));
+        return $this->db->select($this->table_meta,$data,array('page_id'=>"$id"));
     }
 
     public function select_image_of_page($data){
@@ -102,8 +102,8 @@ class Model{
     }
 
     public function selectNameOfImage ($data,$id){
-    if(empty($data)) return false;
-    return $this->db->select1($this->table_image,$data,array('id'=>"$id"));
+        if(empty($data)) return false;
+        return $this->db->select($this->table_image,$data,array('id'=>"$id"));
     }
 
     public function editUser($data,$array){
@@ -121,7 +121,7 @@ class Model{
     }
     public function select_oldPassword($data,$id){
         if(empty($data)) return false;
-        return $this->db->select1($this->table,$data,array('id'=>"$id"));
+        return $this->db->select($this->table,$data,array('id'=>"$id"));
     }
 
     public function update_password($data,$id){
@@ -131,6 +131,6 @@ class Model{
 
     public function select_pageID($data,$id){
       if(empty($data)) return false;  
-      return $this->db->select1($this->table_meta,$data,array('image_id'=>"$id"));
+      return $this->db->select($this->table_meta,$data,array('image_id'=>"$id"));
     }
 }

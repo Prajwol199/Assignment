@@ -1,7 +1,7 @@
 <?php 
-require_once 'Model.php';
+require_once __dir__.'/DatabaseController.php';
 
-class ImageController extends Model{
+class ImageController extends DatabaseController{
 	protected $tableName = 'pages';
 	protected $table = 'users';
 	protected $table_image='image';

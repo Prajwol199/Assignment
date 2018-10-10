@@ -1,2 +1,3 @@
 RewriteEngine On
-RewriteRule ^/announce/([0-9]+)$ announce.php?id=$1 [QSA]
+	RewriteBase /cms/admin/view/
+	RewriteRule ^pagemanager$ home.php?page=page_manager [L,QSA]

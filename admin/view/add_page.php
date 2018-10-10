@@ -16,8 +16,7 @@ $add->AddUser();
 
        <div class="form-group">
           <label> Description</label><br>
-          <textarea name="des" rows="6" cols="50" class="form-control">
-          </textarea>
+          <textarea name="des" rows="6" cols="50" class="form-control"></textarea>
        </div>
        <div class="form-group">
           <label> Image</label><br>
