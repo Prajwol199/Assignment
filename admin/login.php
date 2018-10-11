@@ -23,7 +23,7 @@ if(isset($_POST['login'])){
             <div class="panel panel-primary" style="margin-top:100px; ">
                 <div class="panel-heading">Login to dashboard</div>
                 <div class="panel-body">
-                    <form  method="post"  name="form" onsubmit="validation(event)">
+                    <form  method="post"  name="form" onsubmit="validation()">
                         <div class="form-group input-group">
                             <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="text" name="email" class="form-control" placeholder="Username"
@@ -48,9 +48,7 @@ if(isset($_POST['login'])){
                         <div class="form-group">
                             <button class="btn btn-success btn pull-right" name="login">LogIn</button>
                         </div>
-
                     </form>
-
                 </div>
             </div>
         </div>

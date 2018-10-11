@@ -4,8 +4,7 @@ define('DB_USER','root');
 define('DB_PASS' ,'');
 define('DB_NAME', 'phpassignment');
 
-class Database
-{
+class Database{
 
     public static $_instantiate = '';
 
@@ -15,11 +14,8 @@ class Database
     }
 
 
-    public function connection()
-    {
-
+    public function connection(){
         $con = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
-        // Check connection
         if (mysqli_connect_errno())
         {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -27,8 +23,7 @@ class Database
         return $con;
     }
 
-    public static function instantiate()
-    {
+    public static function instantiate(){
         if (!self::$_instantiate) {
             return self::$_instantiate = new Database();
 
@@ -36,113 +31,90 @@ class Database
         return self::$_instantiate;
     }
 
-    public function insert($tableName = "", $data = array())
-    {
+    public function insert($tableName = "", $data = array()){
+         # INSERT INTO TABLENAME SET name = 'hello', age='3';
+        if( is_array( $data ) && count( $data ) > 0 ){
+            $sql = 'INSERT INTO ' . $tableName . ' SET ';
 
-             # INSERT INTO TABLENAME SET name = 'hello', age='3';
-            if( is_array( $data ) && count( $data ) > 0 ){
-                $sql = 'INSERT INTO ' . $tableName . ' SET ';
-
-                foreach( $data as $field => $value ){
-                    $sql .= $field . '= "' . $value . '",';
-                }echo $sql;
-                $sql = rtrim( $sql, ',' );
-                $result = mysqli_query($this->connection(),$sql);
-                return $result;
+            foreach( $data as $field => $value ){
+                $sql .= $field . '= "' . $value . '",';
             }
-            return false;
-
+            $sql = rtrim( $sql, ',' );
+            $result = mysqli_query($this->connection(),$sql);
+            return $result;
+        }
+        return false;
     }
-
 
     public function delete($tableName="",$data){
-            if( is_array( $data ) && count( $data ) > 0 ){
-                $sql = 'DELETE FROM ' . $tableName. ' WHERE ';  
-                foreach ($data as $field => $value) {
-                    $sql .= $field. '="' .$value .'",';
+        if( is_array( $data ) && count( $data ) > 0 ){
+            $sql = 'DELETE FROM ' . $tableName. ' WHERE ';  
+            foreach ($data as $field => $value) {
+                $sql .= $field. '="' .$value .'",';
 
-                    $sql = rtrim($sql,',');
-                    $result = mysqli_query($this->connection(),$sql);
-                    return $result;
-                }        
-            }
-            return false;
-    }
-
-
-        public function update($tableName="",$data="",$criteria=""){
-            if( is_array( $data ) && count( $data ) > 0 ){
-                $sql = 'UPDATE ' . $tableName. ' SET ';
-
-                foreach ($data as $field => $value) {
-                    $sql .=$field .'="'.$value . '",';
-                }
-                $sql = rtrim( $sql,',');
-
-                $sql .=' WHERE ';
-
-                foreach ($criteria as $field => $value) {
-                    $sql .=$field .'="'.$value . '"AND';
-                }
-                $sql = rtrim( $sql,'AND');
-
+                $sql = rtrim($sql,',');
                 $result = mysqli_query($this->connection(),$sql);
                 return $result;
-            }
-            return false;
+            }        
         }
+        return false;
+    }
 
+    public function update($tableName="",$data="",$criteria=""){
+        if( is_array( $data ) && count( $data ) > 0 ){
+            $sql = 'UPDATE ' . $tableName. ' SET ';
 
-         public function select($tableName = '',$data="",$criteria=""){
-            if( is_array( $data ) && count( $data ) > 0 ){
-                $sql="SELECT ";
-                foreach ($data as $value) {
-                    $sql .=$value . ',';
-                }
-                $sql= rtrim( $sql,',');
-                $sql.=' FROM '. $tableName;
-                if (!empty($criteria)) {
-                     $sql.=' WHERE ';
-                    foreach ($criteria as $key => $value) {
-                        $sql .=$key.'="' .$value. '" AND ';                     
-                    }
-                    $sql = substr($sql,0,-4);
-                }
-                $result= mysqli_query($this->connection(),$sql);
-                return $result;               
+            foreach ($data as $field => $value) {
+                $sql .=$field .'="'.$value . '",';
             }
-            return false;
-         }
+            $sql = rtrim( $sql,',');
 
-         public function selectImage($tableName='',$data=''){
-            if(is_array($data) && count($data)>0){
-                $sql = "SELECT id,image FROM $tableName WHERE";
-                foreach ($data as $key => $value) {
-                    $sql .= ' id="' .$value. '" OR';
-                }
-                $sql = rtrim($sql,'OR');
-                $result= mysqli_query($this->connection(),$sql);
-                return $result;
+            $sql .=' WHERE ';
+
+            foreach ($criteria as $field => $value) {
+                $sql .=$field .'="'.$value . '"AND';
             }
-            return false;
-         }
+            $sql = rtrim( $sql,'AND');
 
-    // public function select($tableName = '',$data="",$criteria=""){
-    //         if( is_array( $data ) && count( $data ) > 0 ){
-    //             foreach ($data as $value) {
-    //                 $sql = " SELECT " . $value . ' FROM ' . $tableName;  
-    //                     if (!empty($criteria)) {
-    //                     $sql .= " WHERE " ;
-    //                     foreach ($criteria as $key => $value) {
-    //                         $sql .=$key.'="' .$value. '" AND ';                     
-    //                     }    
-    //                     $sql = substr($sql,0,-4); 
-    //                 }               
-    //             }
-    //            $result= mysqli_query($this->connection(),$sql);
-    //            return $result;
-    //         }       
-    //     }
+            $result = mysqli_query($this->connection(),$sql);
+            return $result;
+        }
+        return false;
+    }
+
+    public function select($tableName = '',$data="",$criteria=""){
+        if( is_array( $data ) && count( $data ) > 0 ){
+            $sql="SELECT ";
+            foreach ($data as $value) {
+                $sql .=$value . ',';
+            }
+            $sql= rtrim( $sql,',');
+            $sql.=' FROM '. $tableName;
+            if (!empty($criteria)) {
+                 $sql.=' WHERE ';
+                foreach ($criteria as $key => $value) {
+                    $sql .=$key.'="' .$value. '" AND ';                     
+                }
+                $sql = substr($sql,0,-4);
+            }
+            $result= mysqli_query($this->connection(),$sql);
+            return $result;               
+        }
+        return false;
+    }
+
+    public function selectImage($tableName='',$data=''){
+        if(is_array($data) && count($data)>0){
+            $sql = "SELECT id,image FROM $tableName WHERE";
+            foreach ($data as $key => $value) {
+                $sql .= ' id="' .$value. '" OR';
+            }
+            $sql = rtrim($sql,'OR');
+            $result= mysqli_query($this->connection(),$sql);
+            return $result;
+        }
+        return false;
+    }
 }
 
 

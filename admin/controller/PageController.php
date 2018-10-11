@@ -11,6 +11,13 @@ class PageController extends DatabaseController{
     {
         parent::__construct();
     }
+    public function fetch($data){
+    	$rows=[];
+		while($row=mysqli_fetch_assoc($data)){
+			$rows[]=$row;
+		}
+		return $rows;
+    }
 
     public function AddUser(){
 		if(isset($_POST['name']) && isset($_POST['des']) && isset($_FILES['file'])){
@@ -32,64 +39,58 @@ class PageController extends DatabaseController{
 				}
 
 				if(!empty($newName)){					
-		 				$data=array(
-		 					'image'=>"$newName"
-		 				);
-		 				$this->imagesInsert($data);
-		 				$data=array(
-									'id'
-									);
-		 				$result = $this->imageId($data,$newName);
-		 				$value = mysqli_fetch_assoc($result);
-		 				foreach ($value as $key => $image_id) {
-		 					echo $image_id;
-		 				}
+	 				$data=array(
+	 					'image'=>"$newName"
+	 				);
+	 				$this->imagesInsert($data);
+	 				$data=array(
+								'id'
+								);
+	 				$result = $this->imageId($data,$newName);
+	 				$value = mysqli_fetch_assoc($result);
+	 				foreach ($value as $key => $image_id) {
+	 					echo $image_id;
+	 				}
 
-		 				$page_field=array(
-		 					'name'=>"$name",
-		 					'description'=>"$description"
-		 				);
-		 				$save = $this->save($page_field);
+	 				$page_field=array(
+	 					'name'=>"$name",
+	 					'description'=>"$description"
+	 				);
+	 				$save = $this->save($page_field);
 
-		 				
-		 				$page_id=array(
-		 					'id'
-		 				);
-		 				$id_page = $this->pageId($page_id,$name,$description);
-		 				$value_page = mysqli_fetch_assoc($id_page);
-		 				foreach ($value_page as $key => $id_page) {
-		 					echo $id_page;
-		 				}
+	 				
+	 				$page_id=array(
+	 					'id'
+	 				);
+	 				$id_page = $this->pageId($page_id,$name,$description);
+	 				$value_page = mysqli_fetch_assoc($id_page);
+	 				foreach ($value_page as $key => $id_page) {
+	 					echo $id_page;
+	 				}
 
-		 				$meta=array(
-		 					'page_type'=>'page',
-		 					'page_id'=>"$id_page",
-		 					'image_id'=>"$image_id"
-		 				);
+	 				$meta=array(
+	 					'page_type'=>'page',
+	 					'page_id'=>"$id_page",
+	 					'image_id'=>"$image_id"
+	 				);
 
-		 				$meta_result = $this->meta_save($meta);
-		 				if($meta_result == true){
-		 					header('Location:home.php?page=page_manager');
-		 				}
-
-		 			}
-		 		}
-
- 			}
-		}
+	 				$meta_result = $this->meta_save($meta);
+	 				if($meta_result == true){
+	 					header('Location:home.php?page=page_manager');
+	 				}
+	 			}
+	 		}
+ 		}
+	}
 
 
 	public function getuser(){
-
 		$data=array(
 			'*'
 		);
 
 		$field=$this->allUser($data);
-		$rows=array();
-		while($row=mysqli_fetch_assoc($field)){
-			$rows[]=$row;
-		}
+		$rows = $this->fetch($field);
 		return $rows;
 	}
 
@@ -114,10 +115,7 @@ class PageController extends DatabaseController{
 			'*'
 		);
 		$field = $this->editUser($data,array('id'=>"$id"));
-		$rows=[];
-		while($row=mysqli_fetch_assoc($field)){
-			$rows[]=$row;
-		}
+		$rows = $this->fetch($field);
 		return $rows;
 	}
 
@@ -128,8 +126,7 @@ class PageController extends DatabaseController{
 				echo "Page name and Description cannot be empty";
 			}else{
 				$data['name'] = $_POST['name'];			
-				$data['description'] = $_POST['des'];			
-
+				$data['description'] = $_POST['des'];
 
 				$update = $this->updatePage($data,array('id'=>"$id"));
 
@@ -139,7 +136,5 @@ class PageController extends DatabaseController{
 				}
 			}
 		}
-	}
-
-	
+	}	
 }

@@ -10,9 +10,16 @@ class User extends DatabaseController{
 	protected $table_meta='meta';
 
 
-	public function __construct()
-    {
+	public function __construct(){
         parent::__construct();
+    }
+
+    public function fetch($data){
+    	$rows=[];
+		while($row=mysqli_fetch_assoc($data)){
+			$rows[]=$row;
+		}
+		return $rows;
     }
 
 	public function getAdmin($id=""){
@@ -20,10 +27,7 @@ class User extends DatabaseController{
 			'*'
 		);
 		$field = $this->editAdmin($data,array('id'=>"$id"));
-		$rows=[];
-		while($row=mysqli_fetch_assoc($field)){
-			$rows[]=$row;
-		}
+		$rows = $this->fetch($field);
 		return $rows;
 	}
 
@@ -33,56 +37,47 @@ class User extends DatabaseController{
 			'image_id'
 		);
 		$result = $this->view_image($data,$id);
-		$rows=[];
-		while($row=mysqli_fetch_assoc($result)){
-			$rows[]=$row;
-		}
+		$rows = $this->fetch($result);
 		$get_id=[];
 		foreach ($rows as $key => $value) {
 			$get_id[] = $value['image_id'];
 		}
 		$images = $this->select_image_of_page($get_id);
-		$page_image=[];
-		while($row=mysqli_fetch_assoc($images)){
-			$page_image[]=$row;
-		}
+		$page_image = $this->fetch($images);
 		return $page_image;
 	}
 
-
-	public function isLoginUser(){;
-
+	public function isLoginUser(){
 		if(isset($_POST['email']) && isset($_POST['password'])){
 			$email=$_POST['email'];
 			$password=$_POST['password'];
 			if(isset($_POST['remember'])){
 				$remember=$_POST['remember'];
 			}
+			$data=array(
+		 		'*'
+		 		);
+		 	$field=array(
+		 		'email'=>"$email",
+		 		'password'=>"$password"
+		 	);
+		 	$login = $this->loginSelect($data,$field);
 
-				$data=array(
-			 		'*'
-			 		);
-			 	$field=array(
-			 		'email'=>"$email",
-			 		'password'=>"$password"
-			 	);
-			 	$login = $this->loginSelect($data,$field);
-
-			 	if((mysqli_num_rows($login))==1){
-			 		if($remember == '1' || $remember == 'on'){
-                    	$hour = time() + 3600 * 24 * 30;
-                    	setcookie('email', $email, $hour);
-                    	setcookie('password', $password, $hour);
-                	}
-                	$_SESSION['login']="login";
-                	$_SESSION['user']="user";
-			 		header('Location:index.php');
-			 	}else{
-			 		echo "Invalid email and password";
-			 	}
-	 	}
-				
+		 	if((mysqli_num_rows($login))==1){
+		 		if($remember == '1' || $remember == 'on'){
+                	$hour = time() + 3600 * 24 * 30;
+                	setcookie('email', $email, $hour);
+                	setcookie('password', $password, $hour);
+            	}
+            	$_SESSION['login']="login";
+            	$_SESSION['user']="user";
+		 		header('Location:index.php');
+		 	}else{
+		 		echo "Invalid email and password";
+		 	}
+	 	}				
 	}
+
 	public function deleteImg_page(){
 		$id = $_POST['delete-image'];
 
@@ -101,10 +96,7 @@ class User extends DatabaseController{
 			'page_id'
 		);
 		$selectPageid = $this->select_pageID($page_id,$id);
-		$rows=[];
-		while($row=mysqli_fetch_assoc($selectPageid)){
-			$rows[]=$row;
-		}
+		$rows = $this->fetch($selectPageid);
 		foreach ($rows as $key => $value) {
 			$page_id_redirect = $value['page_id'];
 		}
@@ -145,15 +137,15 @@ class User extends DatabaseController{
  				}
  			}
  			$meta=array(
-	 					'page_type'=>'page',
-	 					'page_id'=>"$id",
-	 					'image_id'=>"$image_id"
-	 				);
+				'page_type'=>'page',
+				'page_id'=>"$id",
+				'image_id'=>"$image_id"
+	 			);
 
-				$meta_result = $this->meta_save($meta);
-				if($meta_result == true){
-					header('Location:home.php?page=view_image&id='.$id);
-				}
+			$meta_result = $this->meta_save($meta);
+			if($meta_result == true){
+				header('Location:home.php?page=view_image&id='.$id);
+			}
 		}
 	}
 
@@ -162,10 +154,7 @@ class User extends DatabaseController{
 			'*'
 		);
 		$field = $this->admin_manager_display($data);
-		$rows=[];
-		while($row=mysqli_fetch_assoc($field)){
-			$rows[]=$row;
-		}
+		$rows = $this->fetch($field);
 		return $rows;
 	}
 	public function changePassword(){
@@ -181,10 +170,7 @@ class User extends DatabaseController{
 				'password'
 			);
 			$admin = $this->select_oldPassword($data,$id);
-			$rows=[];
-			while($row=mysqli_fetch_assoc($admin)){
-				$rows[]=$row;
-			}
+			$rows = $this->fetch($admin);
 			foreach ($rows as $key => $value) {
 				$oldpassword =  $value['password'];
 			}
@@ -200,10 +186,7 @@ class User extends DatabaseController{
 				if($this->update_password($data,$id)){
 					echo "password upated";
 				}
-
 			}
 		}
-
 	}
-
 }

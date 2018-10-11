@@ -7,25 +7,22 @@ class DatabaseController{
 	protected $table;
     protected $table_image;
     protected $table_meta;
-    private $db = null;
-
-    
+    private $db = null;    
 
     //call to db
-    public function __construct()
-    {
+    public function __construct(){
         $this->db = Database::instantiate();
 
     }
 
     public function save($data = array()){
-    	 if (empty($data)) return false;
-    	 return $this->db->insert($this->tableName, $data);
+    	if (empty($data)) return false;
+    	return $this->db->insert($this->tableName, $data);
     }
 
     public function imageId($data,$newName){
-         if (empty($data)) return false;
-         return $this->db->select($this->table_image,$data,array('image'=>"$newName"));
+        if (empty($data)) return false;
+        return $this->db->select($this->table_image,$data,array('image'=>"$newName"));
     }
 
     public function pageId($data,$name,$description){
@@ -38,14 +35,13 @@ class DatabaseController{
         return $this->db->insert($this->table_meta,$data);
     }
 
-
     public function allUser($data=array()){
-         if (empty($data)) return false;
+        if (empty($data)) return false;
     	return $this->db->select($this->tableName,$data);
     }
 
     public function delete($data=array()){
-         if (empty($data)) return false;
+        if (empty($data)) return false;
     	return $this->db->delete($this->tableName,$data);
     }
 
@@ -55,7 +51,7 @@ class DatabaseController{
     }
 
     public function updatePage($data,$array){
-         if (empty($data)) return false;
+        if (empty($data)) return false;
         return $this->db->update($this->tableName,$data,$array);
     }
 
@@ -64,14 +60,13 @@ class DatabaseController{
         return $this->db->delete($this->table_meta,array('page_id'=>"$id"));
     }
 
-
     public function dropdown($data){
-         if (empty($data)) return false;
+        if (empty($data)) return false;
         return $this->db->select($this->tableName,$data);
     }
 
     public function loginSelect($data,$field){
-         if (empty($data)) return false;
+        if (empty($data)) return false;
         return $this->db->select($this->table,$data,$field);
     }
 
@@ -125,8 +120,8 @@ class DatabaseController{
     }
 
     public function update_password($data,$id){
-         if(empty($data)) return false;
-         return $this->db->update($this->table,$data,array('id'=>"$id"));
+        if(empty($data)) return false;
+        return $this->db->update($this->table,$data,array('id'=>"$id"));
     }
 
     public function select_pageID($data,$id){

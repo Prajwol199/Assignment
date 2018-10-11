@@ -7,9 +7,16 @@ class ImageController extends DatabaseController{
 	protected $table_image='image';
 	protected $table_meta='meta';
 
-	public function __construct()
-    {
+	public function __construct(){
         parent::__construct();
+    }
+
+    public function fetch($data){
+    	$rows=[];
+		while($row=mysqli_fetch_assoc($data)){
+			$rows[]=$row;
+		}
+		return $rows;
     }
 
 	public function addImage(){
@@ -45,10 +52,7 @@ class ImageController extends DatabaseController{
 			'image'
 		);
 		$imageName = $this->displayImage($data);
-		$rows=[];
-		while($row=mysqli_fetch_assoc($imageName)){
-			$rows[]=$row;
-		}
+		$rows = $this->fetch($imageName);
 		return $rows;
 	}
 

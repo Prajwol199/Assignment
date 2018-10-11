@@ -5,8 +5,8 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="../admin/static/style/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../admin/static/style/css/syle.css">
+    <link rel="stylesheet" type="text/css" href="../admin/static/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../admin/static/css/syle.css">
 
 </head>
 <boby >
@@ -34,6 +34,6 @@
         	</div>
     </div>
 </div>
-<script type="text/javascript" src="../css/js/script.js"></script>
+<script type="text/javascript" src="../admin/static/js/script.js"></script>
 </body>
 </html>
