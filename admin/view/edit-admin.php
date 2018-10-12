@@ -22,7 +22,7 @@ if(isset($_POST['edit-admin'])){
                     <?=$_SESSION['old']?></div>
                     <?php unset($_SESSION['old']) ?>
                 <?php endif;?>
-    			<form method="post">
+    			<form method="post"  name="Password" onsubmit="return updatePassword()">
 					<div class="form-group">
 						<label for="opass"> Old Password </label>
 						<input type="Password" name="opassword" id="opass" class="form-control">

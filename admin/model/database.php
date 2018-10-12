@@ -8,16 +8,14 @@ class Database{
 
     public static $_instantiate = '';
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->connection();
     }
 
 
     public function connection(){
         $con = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
-        if (mysqli_connect_errno())
-        {
+        if (mysqli_connect_errno()){
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
         return $con;
@@ -49,7 +47,7 @@ class Database{
     public function delete($tableName="",$data){
         if( is_array( $data ) && count( $data ) > 0 ){
             $sql = 'DELETE FROM ' . $tableName. ' WHERE ';  
-            foreach ($data as $field => $value) {
+            foreach ($data as $field => $value){
                 $sql .= $field. '="' .$value .'",';
 
                 $sql = rtrim($sql,',');
@@ -64,18 +62,17 @@ class Database{
         if( is_array( $data ) && count( $data ) > 0 ){
             $sql = 'UPDATE ' . $tableName. ' SET ';
 
-            foreach ($data as $field => $value) {
+            foreach ($data as $field => $value){
                 $sql .=$field .'="'.$value . '",';
             }
             $sql = rtrim( $sql,',');
 
             $sql .=' WHERE ';
 
-            foreach ($criteria as $field => $value) {
+            foreach ($criteria as $field => $value){
                 $sql .=$field .'="'.$value . '"AND';
             }
             $sql = rtrim( $sql,'AND');
-
             $result = mysqli_query($this->connection(),$sql);
             return $result;
         }
@@ -116,5 +113,3 @@ class Database{
         return false;
     }
 }
-
-

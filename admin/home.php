@@ -8,6 +8,8 @@ require_once __dir__.'/controller/setting.php';
 
 
 global $server_root;
+global $site_name;
+global $footer;
 $page = $_GET['page'] ? $_GET['page'] : 'dashboard';
 $title = ucfirst($page);
 $page = $page . '.php';

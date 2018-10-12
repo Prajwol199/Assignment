@@ -19,7 +19,7 @@ class PageController extends DatabaseController{
 		return $rows;
     }
 
-    public function AddUser(){
+    public function AddPage(){
 		if(isset($_POST['name']) && isset($_POST['des']) && isset($_FILES['file'])){
 			if(empty($_POST['name']) || empty($_POST['des'])){
 				echo "Page name and Description cannot be empty";
@@ -84,7 +84,7 @@ class PageController extends DatabaseController{
 	}
 
 
-	public function getuser(){
+	public function getPage(){
 		$data=array(
 			'*'
 		);
@@ -94,7 +94,7 @@ class PageController extends DatabaseController{
 		return $rows;
 	}
 
-	public function deleteUsers(){
+	public function deletePages(){
 		$id=$_POST['delete-page'];
 
 		$data=array(
@@ -110,7 +110,7 @@ class PageController extends DatabaseController{
 		}
 	}
 
-	public function getUsers($id=""){
+	public function getPages($id=""){
 		$data=array(
 			'*'
 		);
@@ -119,7 +119,7 @@ class PageController extends DatabaseController{
 		return $rows;
 	}
 
-	public function updateUser($id){
+	public function updatePages($id){
 		$data = [];
 		if(isset($_POST['name']) && isset($_POST['des'])){
 			if(empty($_POST['name']) || empty($_POST['des'])){

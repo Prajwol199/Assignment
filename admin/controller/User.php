@@ -1,5 +1,6 @@
 <?php
 require_once __dir__.'/DatabaseController.php';
+require_once __dir__.'/phpmailer.php';
 session_start();
 
 class User extends DatabaseController{
@@ -51,6 +52,7 @@ class User extends DatabaseController{
 		if(isset($_POST['email']) && isset($_POST['password'])){
 			$email=$_POST['email'];
 			$password=$_POST['password'];
+			$encrypt = md5($password);
 			if(isset($_POST['remember'])){
 				$remember=$_POST['remember'];
 			}
@@ -59,7 +61,7 @@ class User extends DatabaseController{
 		 		);
 		 	$field=array(
 		 		'email'=>"$email",
-		 		'password'=>"$password"
+		 		'password'=>"$encrypt"
 		 	);
 		 	$login = $this->loginSelect($data,$field);
 
@@ -164,7 +166,9 @@ class User extends DatabaseController{
 		}else{
 			$id=$_POST['edit-admin'];
 			$oldPass=$_POST['opassword'];
+			$oldencrypt = md5($oldPass);
 			$newpass = $_POST['npassword'];
+			$newencrypt = md5($newpass);
 
 			$data=array(
 				'password'
@@ -174,13 +178,13 @@ class User extends DatabaseController{
 			foreach ($rows as $key => $value) {
 				$oldpassword =  $value['password'];
 			}
-			if($oldpassword <> $oldPass){
+			if($oldpassword <> $oldencrypt){
 				echo "Old password doesnot matched";
 
 			}
-			if($oldpassword == $oldPass){
+			if($oldpassword == $oldencrypt){
 				$data=array(
-					'password'=>"$newpass"
+					'password'=>"$newencrypt"
 				);
 				
 				if($this->update_password($data,$id)){

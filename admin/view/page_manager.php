@@ -1,10 +1,10 @@
 <?php
 $add = new PageController();
-$field=$add->getUser();
+$field=$add->getPage();
 
 if(isset($_POST['delete-page'])){
     $objUser = new PageController();
-    $objUser->deleteUsers();
+    $objUser->deletePages();
 }
 
 ?>

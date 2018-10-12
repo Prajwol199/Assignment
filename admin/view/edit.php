@@ -3,7 +3,7 @@
 $id=$_GET['id'];
 
 $select = new PageController();
-$field = $select->getUsers($id);
+$field = $select->getPages($id);
 
 foreach ($field as $key => $value) {
   $id=$value['id'];
@@ -11,7 +11,7 @@ foreach ($field as $key => $value) {
   $description= $value['description'];
 }
 
-$select->updateUser($id);
+$select->updatePages($id);
 
 ?>
 <div class=" col-md-12 col-md-offset-3">

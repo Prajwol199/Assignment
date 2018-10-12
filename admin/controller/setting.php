@@ -1,9 +1,11 @@
 <?php
 	global $server_root;
+	global $site_name;
+	global $footer;
 	require_once __dir__.'/../model/database.php';
 	$conn = new database(); 
 
-	$sql = 'SELECT server_root FROM setting';
+	$sql = 'SELECT * FROM setting';
 
 	$result = mysqli_query($conn->connection(),$sql);
 
@@ -13,4 +15,6 @@
 	}
 	foreach ($rows as $key => $value) {
 		$server_root = $value['server_root'];
+		$site_name = $value['site_name'];
+		$footer = $value['footer'];
 	}
