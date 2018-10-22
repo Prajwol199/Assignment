@@ -27,18 +27,45 @@ class ImageController extends DatabaseController{
 				$file = $_FILES['file'];
 
 				$ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-	 			$newName = md5(time() . rand()) . '.' . $ext;
+	 			$name = md5(time() . rand());
+	 			$newName =$name.'.'.$ext;
 	 			$tmpName = $file['tmp_name'];
 
-
 	 			$imagePath='../admin/static/images/pageImage/';
+	 			$cropimagePath='../admin/static/images/cropImage/';
 	 			if(!move_uploaded_file($tmpName,$imagePath. $newName)){
 	 				echo "Image not saved";
 				}
 
-				if(!empty($newName)){
+				if($ext == 'PNG'){
+					$cropName = $name.'-thumbnail.'.$ext;
+	 				$im = imagecreatefrompng($imagePath.$newName);
+	 				// $size = min(imagesx($im), imagesy($im));
+	 				$sizeH='250';
+	 				$sizeW='250';
+					$im2 = imagecrop($im, ['x' => 150, 'y' => 150, 'width' => $sizeW, 'height' => $sizeH]);
+						if ($im2 !== FALSE) {							
+						    $img = imagepng($im2, $cropimagePath.$cropName);
+					    	imagedestroy($im2);
+						}					
+	 			}else if ($ext == 'jpg'){
+	 					$cropName = $name.'-thumbnail.'.$ext;
+		 				$im = imagecreatefromjpeg($imagePath.$newName);
+		 				$sizeH='250';
+		 				$sizeW='250';
+						$im2 = imagecrop($im, ['x' => 150, 'y' => 150, 'width' => $sizeW, 'height' => $sizeH]);
+						if ($im2 !== FALSE) {							
+						    $img = imagejpeg($im2, $cropimagePath.$cropName);
+					    	imagedestroy($im2);
+						}
+	 			}else{
+	 				echo "Invalid extension";
+	 			}
+
+				if(!empty($newName) && !empty($cropName)){
 	 				$data=array(
-	 					'image'=>"$newName"
+	 					'image'=>"$newName",
+	 					'crop'=>"$cropName"
 	 				);
 	 				$this->imagesInsert($data);
 	 			}
@@ -49,7 +76,8 @@ class ImageController extends DatabaseController{
 	public function selectimage(){
 		$data=array(
 			'id',
-			'image'
+			'image',
+			'crop'
 		);
 		$imageName = $this->displayImage($data);
 		$rows = $this->fetch($imageName);

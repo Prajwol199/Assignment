@@ -7,6 +7,8 @@
     <title><?=$title?></title>
     <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/lightbox/lightbox.min.css">
+
 
 </head>
 <body>
