@@ -1,6 +1,7 @@
 <?php
 require_once __dir__.'/../admin/controller/setting.php';
 require_once __dir__.'/../admin/controller/ImageCOntroller.php';
+require_once __dir__.'/../admin/controller/UserEndController.php';
 
 global $server_root;
 global $site_name;

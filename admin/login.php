@@ -23,9 +23,10 @@ if(isset($_POST['login'])){
     <div class="row">
         <div class="loginPage col-md-5 col-md-offset-4">
             <div class="panel panel-primary" style="margin-top:100px; ">
-                <div class="panel-heading">Login to dashboard</div>
+                <div class="panel-heading" align="center">Login to dashboard</div>
                 <div class="panel-body">
-                    <form  method="post"  name="form" onsubmit="return validation()">
+                <div class="error " id="error" style="color:red;"></div><br>
+                    <form  method="post" name="form" onsubmit="return validation()">
                         <div class="form-group input-group">
                             <span class="input-group-addon" id="sizing-addon2">Email</span>
                             <input type="text" name="email" class="form-control" placeholder="Username"

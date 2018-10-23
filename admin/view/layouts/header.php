@@ -25,10 +25,11 @@
 <div class="col-md-12">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
-            <ul class="nav navbar-nav" style="padding-left:400px;">
+            <ul class="nav navbar-nav" style="padding-left:300px;">
                 <li><a href="<?=$server_root?>admin/home.php?page=page_manager">Page Manager</a></li>
                 <li><a href="<?=$server_root?>admin/home.php?page=admin-manager">Admin Manager</a></li>
                 <li><a href="<?=$server_root?>admin/home.php?page=image_manager">Image Manager</a></li>
+                <li><a href="<?=$server_root?>admin/home.php?page=site_configuration">Site Configuration</a></li>
                 <li><a href="<?=$server_root?>admin/home.php?page=logout">Logout</a></li>
             </ul>
         </div>

@@ -102,7 +102,7 @@ class Database{
 
     public function selectImage($tableName='',$data=''){
         if(is_array($data) && count($data)>0){
-            $sql = "SELECT id,image FROM $tableName WHERE";
+            $sql = "SELECT id,image,crop FROM $tableName WHERE";
             foreach ($data as $key => $value) {
                 $sql .= ' id="' .$value. '" OR';
             }

@@ -111,7 +111,6 @@ class PageController extends DatabaseController{
  		}
 	}
 
-
 	public function getPage(){
 		$data=array(
 			'*'

@@ -37,7 +37,7 @@ class ImageController extends DatabaseController{
 	 				echo "Image not saved";
 				}
 
-				if($ext == 'PNG'){
+				if($ext == 'PNG' || $ext == 'png'){
 					$cropName = $name.'-thumbnail.'.$ext;
 	 				$im = imagecreatefrompng($imagePath.$newName);
 	 				// $size = min(imagesx($im), imagesy($im));
@@ -105,5 +105,4 @@ class ImageController extends DatabaseController{
 			unlink('../admin/static/images/pageImage/' .$name);
 		}
 	}
-
 }

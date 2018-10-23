@@ -3,7 +3,8 @@ $add = new PageController();
 $add->AddPage();
 ?>
 <div class=" col-md-12 col-md-offset-3">
-  <div class="col-md-6">
+  <div class="col-md-6"><br>
+    <div class="error danger" id="error" style="color:red;"></div><br>
     <form method="post" enctype="multipart/form-data" name="pageForm" onsubmit="return pageValidate()">
        <div class="form-group">
           <label for="uname"> Page Name</label>

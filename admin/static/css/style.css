@@ -6,3 +6,38 @@
 .copy{
 	margin-top:12px;
 }
+
+.content{
+	margin-left: 200px;
+	margin-top: -280px; 
+}
+
+.description{
+	margin-left: 400px;
+	margin-right: 400px;
+	padding: 30px;
+	border: solid; ;
+}
+
+/*vertical nav bar*/
+.vertical-menu {
+    width: 200px;
+    margin-top: 40px;
+}
+
+.vertical-menu a {
+    background-color: #eee;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc;
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50;
+    color: white;
+}

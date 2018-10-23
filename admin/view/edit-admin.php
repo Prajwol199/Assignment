@@ -17,11 +17,7 @@ if(isset($_POST['edit-admin'])){
     <div class="panel panel-primary">
     	<div class="panel-heading" align="center">Change Password</div>
     		<div class="panel-body">
-    			 <?php if(isset($_SESSION['old'])): ?>
-                    <div class="alert alert-success"><i class="glyphicon glyphicon-warning-sign"></i>
-                    <?=$_SESSION['old']?></div>
-                    <?php unset($_SESSION['old']) ?>
-                <?php endif;?>
+    			<div class="error " id="error" style="color:red;"></div><br>
     			<form method="post"  name="Password" onsubmit="return updatePassword()">
 					<div class="form-group">
 						<label for="opass"> Old Password </label>
