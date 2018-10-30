@@ -1,5 +1,5 @@
 <?php
-$id=$_GET['uid'];
+$id=$_GET['id'];
 $select = new User();
 $field = $select->getAdmin($id);
 foreach ($field as $key => $value) {

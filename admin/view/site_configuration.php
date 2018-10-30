@@ -18,12 +18,12 @@ $site_data = $siteConfig->select_site();
     	  </tr>
     	  <?php foreach ($site_data as $key => $value) { ?>
 			<td><?=$key+1?></td> 
-     		<td><img src="../admin/static/images/logo.jpg" width=100></td>
+     		<td><img src="<?= $server_root ?>/admin/static/images/logo.jpg" width=100></td>
     		<td><?= $value['site_name']?></td>
             <td><?= $value['server_root']?></td>
             <td><?= $value['footer']?></td>
     		<td>
-    			<a href="home.php?page=edit-site-configuration&uid=<?= $value['id']?>">
+    			<a href="edit-site-configuration/<?= $value['id']?>">
                     <button class="btn btn-success btn-md">
                         Edit
             		</button>

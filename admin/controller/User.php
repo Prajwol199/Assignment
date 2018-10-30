@@ -1,6 +1,9 @@
 <?php
 require_once __dir__.'/DatabaseController.php';
 require_once __dir__.'/phpmailer.php';
+
+require_once __dir__.'/setting.php';
+
 session_start();
 
 class User extends DatabaseController{
@@ -75,12 +78,14 @@ class User extends DatabaseController{
             	$_SESSION['user']="user";
 		 		header('Location:index.php');
 		 	}else{
-		 		echo "Invalid email and password";
+		 		?><div class="alert alert-danger" style="margin-left: 460px; margin-right: 365px; margin-top: 100px; margin-bottom: -100px; padding-left: 150px;">Invalid email and password</div>
+		 	<?php
 		 	}
 	 	}				
 	}
 
 	public function deleteImg_page(){
+		global $server_root;
 		$id = $_POST['delete-image'];
 
 		$data=array(
@@ -106,12 +111,15 @@ class User extends DatabaseController{
 
 		if($delete == true){
 			unlink('../admin/static/images/pageImage/' .$name);
-			header('Location:home.php?page=view_image&id='.$page_id_redirect);
+			//header('Location:http://localhost/cms/admin/home/view_image/'.$page_id_redirect);
+			$redirect_path = $server_root.'admin/home/view_image/'.$page_id_redirect;				
+			header("Location:$redirect_path");
 		}
 	}
 
 
 	public function addPageImage(){
+		global $server_root;
 		if(isset($_FILES['file']) && isset($_POST['addPageImage'])){
 			$id=$_POST['addPageImage'];
 			$file=$_FILES['file'];
@@ -173,7 +181,9 @@ class User extends DatabaseController{
 
 			$meta_result = $this->meta_save($meta);
 			if($meta_result == true){
-				header('Location:home.php?page=view_image&id='.$id);
+				$redirect_path = $server_root.'admin/home/view_image/'.$id;				
+				header("Location:$redirect_path");
+
 			}
 		}
 	}
@@ -205,9 +215,9 @@ class User extends DatabaseController{
 			foreach ($rows as $key => $value) {
 				$oldpassword =  $value['password'];
 			}
-			if($oldpassword <> $oldencrypt){
-				echo "Old password doesnot matched";
-
+			if($oldpassword <> $oldencrypt){ ?>
+				<div class="alert alert-danger" style="margin-left: 335px; margin-right: 340px; margin-top: 10px; padding-left: 200px;">Old password doesnot matched</div>
+			<?php
 			}
 			if($oldpassword == $oldencrypt){
 				$data=array(

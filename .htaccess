@@ -1,3 +1,12 @@
 RewriteEngine On
-	RewriteBase /cms/admin/view/
-	RewriteRule ^detail/page-manager$ /home.php?page=page_manager [L]
+
+RewriteBase /cms/
+
+RewriteRule ^$ public/user.php?page=home [L,QSA]
+
+RewriteRule user/(.*)/(.*)/(.*) public/user.php?page=$1&slug=$2&id=$3 [L,QSA]
+
+RewriteRule user/(.*) public/user.php?page=$1
+
+
+ErrorDocument 404 http://localhost/cms/public/user/home

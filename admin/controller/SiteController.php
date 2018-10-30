@@ -31,7 +31,7 @@ class SiteController extends Database{
 	}
 
 	public function edit_site(){
-		$id = $_GET['uid'];
+		$id = $_GET['id'];
 		$site_name = $_POST['name'];
 		$site_url = $_POST['url'];
 		$footer = $_POST['footer'];

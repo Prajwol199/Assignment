@@ -1,5 +1,6 @@
 <?php 
 require_once __dir__.'/DatabaseController.php';
+require_once __dir__.'/setting.php';
 
 class PageController extends DatabaseController{
 	protected $tableName = 'pages';
@@ -20,6 +21,35 @@ class PageController extends DatabaseController{
     }
 
     public function AddPage(){
+    	global $server_root;
+    	$name = $_POST['name'];
+    	$parent_id = $_POST['page'];
+    	$slug = $_POST['slug'];
+
+    	$data = array(
+    		'*'
+    	);
+    	$criteria = array(
+    		'name'=>$name
+    	);
+    	$condition = array(
+    		'slug'=>$slug
+    	);
+    	$select_name = $this->name_check($data,$criteria);
+    	$select_slug = $this->name_check($data,$condition);
+    	$db_slug = $this->fetch($select_slug);
+    	$db_name = $this->fetch($select_name);
+    	$a= count($db_slug);
+    	if($a > 0){
+    		$newSlug = $slug.'-'.$a;
+    	}else{
+	    	$count = count($db_name);
+	    	if($count == 0){
+	    		$newSlug = $slug;
+	    	}else{
+	    		$newSlug = $slug.'-'.($count);
+	    	}
+    	}
 		if(isset($_POST['name']) && isset($_POST['des']) && isset($_FILES['file'])){
 			if(empty($_POST['name']) || empty($_POST['des'])){
 				echo "Page name and Description cannot be empty";
@@ -82,7 +112,9 @@ class PageController extends DatabaseController{
 
 	 				$page_field=array(
 	 					'name'=>"$pageName",
-	 					'description'=>"$description"
+	 					'description'=>"$description",
+	 					'parent_id'=>"$parent_id",
+	 					'slug'=>"$newSlug"
 	 				);
 	 				$save = $this->save($page_field);
 
@@ -104,7 +136,8 @@ class PageController extends DatabaseController{
 
 	 				$meta_result = $this->meta_save($meta);
 	 				if($meta_result == true){
-	 					header('Location:home.php?page=page_manager');
+	 					$redirect_path = $server_root.'admin/home/page_manager';				
+						header("Location:$redirect_path");
 	 				}
 	 			}
 	 		}
@@ -133,7 +166,7 @@ class PageController extends DatabaseController{
 		if($delete == true){
 			$delete_meta = $this->delete_meta($id);
 			$_SESSION['msg'] = "page deleted";
-			header('Location:home.php?page=page_manager');
+			header('Location:page_manager');
 		}
 	}
 
@@ -159,9 +192,23 @@ class PageController extends DatabaseController{
 
 				if($update == true){
 					$_SESSION['msg'] = "page edited";
-					header('Location:home.php?page=page_manager');
+					$redirect_path = $server_root.'admin/home/page_manager';				
+					header("Location:$redirect_path");
 				}
 			}
 		}
+	}
+
+	public function select_page(){
+		$data = array(
+			'id',
+			'name'
+		);
+		$criteria = array(
+			'parent_id'=>"-1"
+		);
+		$result = $this->dropdown_page($data,$criteria);
+		$pages = $this->fetch($result);
+		return $pages;
 	}	
 }

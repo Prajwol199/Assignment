@@ -89,3 +89,45 @@ function siteValidation(){
      }
      return true;
 }
+
+function quoteValidate(){
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var phoneno = /^\+?([0-9]{1})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    var Fname = document.forms["pageForm"]["fname"];
+    var Lname = document.forms["pageForm"]["lname"];
+    var phone = document.forms["pageForm"]["phone"];
+    if(!Fname.value){
+      document.getElementById("error").innerHTML = "First name cannot be empty";
+      return false;
+    }
+    if(!Lname.value){
+      document.getElementById("error").innerHTML = "Last name cannot be empty";
+      return false;
+    }
+    if(!phone.value){
+      document.getElementById("error").innerHTML = "Phone number cannot be empty";
+      return false;
+    }
+    if(!phone.value.match(phoneno)){
+        document.getElementById("error").innerHTML = "You have entered an invalid phone number!";
+    return false;
+    }
+    if(!email.value.match(mailformat)){
+        document.getElementById("error").innerHTML = "You have entered an invalid email address!";
+    return false;
+    }
+    return true;
+}
+
+// $(document).ready(function(){
+
+//   $('#form').validate({
+//     rules:{
+//         email:"required",
+//         password:"required"
+//     }
+
+//   });
+
+// });
+

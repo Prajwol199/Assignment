@@ -128,4 +128,19 @@ class DatabaseController{
       if(empty($data)) return false;  
       return $this->db->select($this->table_meta,$data,array('image_id'=>"$id"));
     }
+
+    public function dropdown_page($data,$criteria){
+        if(empty($data) && empty($criteria)) return false;
+        return $this->db->select($this->tableName,$data,$criteria);
+    }
+
+    public function name_check($data,$criteria){
+         if(empty($data)) return false;
+         return $this->db->select($this->tableName,$data,$criteria);
+    }
+
+    public function dublicate_slug($data,$criteria){
+       if(empty($data)) return false;
+       return $this->db->select($this->tableName,$data,$criteria);
+    }
 }

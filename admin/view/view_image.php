@@ -33,7 +33,7 @@
 <?php if(count($image)>0) {?>
 	<?php foreach ($image as $key => $value) {?>
 		<div class="col-md-4 navbar  navbar-default" style="padding:30px;">
-			<img src="../admin/static/images/pageImage/<?= $value['image'] ?>" width="300" height="250" style="padding: 10px;"><br>
+			<img src="<?=$server_root?>/admin/static/images/pageImage/<?= $value['image'] ?>" width="300" height="250" style="padding: 10px;"><br>
 			<form method="post" >
 				<button class="btn btn-danger" name="delete-image" value="<?= $value['id']?>">
 					<a style="color:white"; onclick="return confirm('are you sure delete')"> Delete</a>

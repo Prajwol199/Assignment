@@ -1,4 +1,5 @@
 <?php
+
 $select_page = new UserEndController();
 $pages = $select_page->page_info();
 
@@ -21,7 +22,7 @@ $image = $select_page->select_image();
 <?php if(count($image)>0) {?>
 	<?php foreach ($image as $key => $value) {?>
 		<div class="col-md-4" style="padding:30px;">
-			<a href="../admin/static/images/pageImage/<?= $value['image'] ?>" data-lightbox="<?= $name ?>"><img src="../admin/static/images/cropImage/<?= $value['crop'] ?>" width="300" height="250" style="padding: 10px;"><br></a>
+			<a href="<?= $server_root ?>admin/static/images/pageImage/<?= $value['image'] ?>" data-lightbox="<?= $name ?>"><img src="<?= $server_root ?>admin/static/images/cropImage/<?= $value['crop'] ?>" width="300" height="250" style="padding: 10px;"><br></a>
 		</div>
 	<?php } ?>
 <?php }else{ ?>

@@ -18,7 +18,7 @@ $result = $admin_manager->admin_manager();
      		<td><?= $value['name'] ?></td>
     		<td><?= $value['email']?></td>
     		<td>
-    			<a href="home.php?page=edit-admin&uid=<?= $value['id']?>">
+    			<a href="edit-admin/<?= $value['id']?>">
                     <button class="btn btn-success btn-md">
                         Change Password
             		</button>

@@ -25,6 +25,7 @@ if(isset($_POST['delete-page'])){
     <th>S.N</th>
     <th>Name</th>
     <th>Description</th>
+    <th>Parent_id</th>
     <th>Action</th>
     <th>Image</th>
   </tr>
@@ -34,14 +35,15 @@ if(isset($_POST['delete-page'])){
           <td><?=$key+1?></td>
           <td><?= $value['name']; ?></td>
           <td><?= $value['description']; ?></td>
+          <td><?= $value['parent_id'] ?></td>
           <td>
             <form method="post">
             <button type="submit" name='delete-page' value="<?= $value['id']?>" class="btn btn-danger" onclick="return confirm('are you sure delete')">Delete</button> </form>
-            <a href="<?=$server_root?>admin/home.php?page=edit&id=<?= $value['id']?>"><button class="btn btn-success btn-md">Edit
+            <a href="<?=$server_root?>admin/home/edit/<?= $value['id']?>"><button class="btn btn-success btn-md">Edit
             </button></a>
           </td>
           <td>
-            <a href="<?=$server_root?>admin/home.php?page=view_image&id=<?= $value['id']?>"><button class="btn btn-primary btn-md">
+            <a href="<?=$server_root?>admin/home/view_image/<?= $value['id']?>"><button class="btn btn-primary btn-md">
             View Image
           </button></a>
           </td>

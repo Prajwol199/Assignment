@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteBase /cms/
+
+
+RewriteRule home/(.*)/(.*) admin/home.php?page=$1&id=$2 [L,QSA]
+RewriteRule home/(.*) admin/home.php?page=$1

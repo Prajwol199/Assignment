@@ -36,7 +36,7 @@ foreach ($data as $key => $value) {
 						<input type="text" name="footer" id="footer" class="form-control" value="<?= $footer ?>">
 					</div>
 					<div class="form-group">
-						<img src="../admin/static/images/<?= $logo ?>" width="100"><br>
+						<img src="<?= $server_root ?>/admin/static/images/<?= $logo ?>" width="100"><br>
 						<label for="logo">Change Logo </label>
 						<input type="file" name="logo" id="logo" class="form-control">
 					</div>

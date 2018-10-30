@@ -5,6 +5,7 @@ require_once __dir__.'/controller/User.php';
 require_once __dir__.'/controller/PageController.php';
 require_once __dir__.'/controller/ImageController.php';
 require_once __dir__.'/controller/SiteController.php';
+require_once __dir__.'/controller/UserEndController.php';
 require_once __dir__.'/controller/setting.php';
 
 
@@ -32,5 +33,6 @@ if (file_exists($fileName) && is_file($fileName)) {
 <?php require_once __dir__.'/view/layouts/footer.php' ?>
 
 <?php }else{
-	header('Location:login.php');
+	$redirect_path = $server_root.'admin/login.php';				
+	header("Location:$redirect_path");
 } ?>
