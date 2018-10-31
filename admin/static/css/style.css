@@ -18,7 +18,9 @@
 	padding: 30px;
 	border: solid; ;
 }
-
+.headfoot{
+    background-color: red;
+}
 /*-----------------------hovver dropdown------------------------*/
 .dropbtn {
    /* background-color: #4CAF50;*/

@@ -6,6 +6,7 @@
 <script type="text/javascript" src="<?=$server_root?>admin/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<?=$server_root?>admin/static/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?=$server_root?>admin/static/lightbox/lightbox-plus-jquery.min.js"></script>
+
  <script type="text/javascript">
   var slug = function(str) {
   var $slug = '';

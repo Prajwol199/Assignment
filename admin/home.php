@@ -26,7 +26,9 @@ $fileName = __dir__.'/view/' . $page;
 if (file_exists($fileName) && is_file($fileName)) {
     require_once $fileName;
 } else {
-    require_once __dir__.'/view/layouts/404.php';
+    // require_once __dir__.'/view/layouts/404.php';
+    $redirect_path = $server_root.'admin';				
+	header("Location:$redirect_path");
 }
 ?>
 

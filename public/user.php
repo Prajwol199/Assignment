@@ -24,7 +24,8 @@ $fileName = __dir__ .'/'. $page;
 if (file_exists($fileName) && is_file($fileName)) {
     require_once $fileName;
 } else {
-    echo "Page not found";
+    $redirect_path = $server_root;				
+	header("Location:$redirect_path");
 }
 ?>
 

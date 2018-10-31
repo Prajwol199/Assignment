@@ -1,5 +1,6 @@
 <?php
 require_once __dir__.'/../model/database.php';
+require_once __dir__.'/setting.php';
 
 class SiteController extends Database{
 	protected $table='setting';
@@ -31,6 +32,7 @@ class SiteController extends Database{
 	}
 
 	public function edit_site(){
+		global $server_root;
 		$id = $_GET['id'];
 		$site_name = $_POST['name'];
 		$site_url = $_POST['url'];
@@ -74,7 +76,7 @@ class SiteController extends Database{
 				);
 
 				if($this->update($this->table,$data,$criteria)){
-					echo "Updated";
+					header('Location:'.$server_root.'admin/home/site_configuration');
 				}else{
 					echo "Not updated";
 				}

@@ -1,7 +1,6 @@
 <?php
 require_once __dir__.'/DatabaseController.php';
 require_once __dir__.'/phpmailer.php';
-
 require_once __dir__.'/setting.php';
 
 session_start();
@@ -76,7 +75,8 @@ class User extends DatabaseController{
             	}
             	$_SESSION['login']="login";
             	$_SESSION['user']="user";
-		 		header('Location:index.php');
+            	$_SESSION['welcome']="Welcome to Dashboard";
+		 		header('Location:'.$server_root.'admin');
 		 	}else{
 		 		?><div class="alert alert-danger" style="margin-left: 460px; margin-right: 365px; margin-top: 100px; margin-bottom: -100px; padding-left: 150px;">Invalid email and password</div>
 		 	<?php
@@ -92,12 +92,14 @@ class User extends DatabaseController{
 			'id'=>"$id"
 			);
 		$field = array(
-			'image'
+			'image',
+			'crop'
 		);
 		$select = $this->selectNameOfImage($field,$id);
-		$imgName=mysqli_fetch_assoc($select);
+		$imgName = $this->fetch($select);
 		foreach ($imgName as $key => $value) {
-			$name = $value;
+			$name = $value['image'];
+			$cropName = $value['crop'];
 		}
 		$page_id=array(
 			'page_id'
@@ -111,7 +113,7 @@ class User extends DatabaseController{
 
 		if($delete == true){
 			unlink('../admin/static/images/pageImage/' .$name);
-			//header('Location:http://localhost/cms/admin/home/view_image/'.$page_id_redirect);
+			unlink('../admin/static/images/cropImage/' .$cropName);
 			$redirect_path = $server_root.'admin/home/view_image/'.$page_id_redirect;				
 			header("Location:$redirect_path");
 		}

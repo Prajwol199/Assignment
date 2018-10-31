@@ -91,18 +91,20 @@ class ImageController extends DatabaseController{
 			'id'=>"$id"
 			);
 		$field = array(
-			'image'
+			'image',
+			'crop'
 		);
 		$select = $this->selectNameOfImage($field,$id);
-		$imgName=mysqli_fetch_assoc($select);
+		$imgName=$this->fetch($select);
 		foreach ($imgName as $key => $value) {
-			$name = $value;
+			$name = $value['image'];
+			$cropName = $value['crop'];
 		}
-
 		$delete = $this->delImage($data);
 
 		if($delete == true){
 			unlink('../admin/static/images/pageImage/' .$name);
+			unlink('../admin/static/images/cropImage/'.$cropName);
 		}
 	}
 }

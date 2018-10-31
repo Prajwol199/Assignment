@@ -1,7 +1,16 @@
 RewriteEngine On
 
-RewriteBase /cms/
+RewriteBase /cms/admin/
+
+RewriteRule ^$ view/home/dashboard [L,QSA]
 
 
-RewriteRule home/(.*)/(.*) admin/home.php?page=$1&id=$2 [L,QSA]
-RewriteRule home/(.*) admin/home.php?page=$1
+RewriteRule home/(.*)/(.*) home.php?page=$1&id=$2 [L,QSA]
+RewriteRule home/(.*) home.php?page=$1
+
+ErrorDocument 404 http://localhost/cms/admin
+
+RewriteEngine On 
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /cms/admin [L]

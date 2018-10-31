@@ -8,8 +8,13 @@
     <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/css/bootstrap-glyphicons.css">
     <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/lightbox/lightbox.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<?=$server_root?>admin/static/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+
+
+  <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
 
 </head>
@@ -17,7 +22,7 @@
 <div class=" navbar navbar-default container-fluid">
     <div class="col-md-12 header">
         <div class="col-md-3">
-            <a href="<?=$server_root?>admin/home/dashboard"><img class="img-responsive img-circle" src="<?=$server_root?>/admin/static/images/logo.jpg" width="120px" ></a>
+            <a href="<?=$server_root?>admin"><img class="img-responsive img-circle" src="<?=$server_root?>/admin/static/images/logo.jpg" width="120px" ></a>
         </div>
         <div class="col-md-9 title">
             <h1 align="center" style="margin-left:-250px;"><?= $site_name ?></h1>       

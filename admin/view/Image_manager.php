@@ -12,6 +12,13 @@ if(isset($_POST['delete-image'])) {
 $image = $dropdown->selectimage();
 
 ?>
+  <?php
+     if (isset($_SESSION['success'])):?>
+        <div class="alert alert-success">
+            <h1 align="center"><i class="glyphicon glyphicon-info-sign"></i> <?= $_SESSION['success']; ?></h1>
+        </div>
+        <?php unset($_SESSION['success']) ?>
+    <?php endif; ?> 
 <form method="post" enctype="multipart/form-data">
 	<div class="col-md-6 col-md-offset-3" style="background: pink; padding: 30px;">
 	   	<div class="form-group">
@@ -27,9 +34,9 @@ $image = $dropdown->selectimage();
 		<div class="col-md-4 navbar  navbar-default" style="padding:30px;">
 			 <a class="example-image-link" href="<?= $server_root ?>/admin/static/images/pageImage/<?= $value['image'] ?>" data-lightbox="gallery"><img src="<?= $server_root ?>/admin/static/images/pageImage/<?= $value['image'] ?>" width="300" height="250" style="padding: 10px;"><br></a>
 			<form method="post" >
-				<button class="btn btn-danger" name="delete-image" value="<?= $value['id']?>">
-					<a style="color:white"; onclick="return confirm('are you sure delete')"> Delete</a>
-				</button>
+				<a onclick="return confirm('are you sure delete')"><button class="btn btn-danger" name="delete-image" value="<?= $value['id']?>">
+					 <i class="glyphicon glyphicon-trash"></i> Delete
+				</button></a>
 			</form>
 		</div>
 	<?php } ?>

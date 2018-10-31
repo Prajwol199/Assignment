@@ -10,14 +10,14 @@ $pages = $select_page->select_page();
     <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/lightbox/lightbox.css">
     <script type="text/javascript" src="<?=$server_root?>admin/static/js/jquery.min.js"></script>
-   <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
 
 </head>
 <body>
 <div class=" navbar navbar-default container-fluid">
     <div class="col-md-12 header">
         <div class="col-md-3">
-            <a href="<?=$server_root?>public/user.php?page=home"><img class="img-responsive img-circle" src="<?= $server_root?>admin/static/images/logo.jpg" width="120px" ></a>
+            <a href="<?=$server_root?>"><img class="img-responsive img-circle" src="<?= $server_root?>admin/static/images/logo.jpg" width="120px" ></a>
         </div>
         <div class="col-md-9 title">
             <h1 align="center" style="margin-left:-250px;"><?= $site_name ?></h1>       
@@ -32,13 +32,13 @@ $pages = $select_page->select_page();
 
                     <?php $sub_page = $select_page->dropdown_child($value['id']);?>
                     <?php if(count($sub_page) == 0){ ?>
-                        <li><a href="<?=$server_root?>public/user/display-page/<?=$value['slug']?>/<?=$value['id']?>"><?=$value['name'] ?></a>
+                        <li><a href="<?=$server_root?>user/display-page/<?=$value['slug']?>/<?=$value['id']?>"><?=$value['name'] ?></a>
                             <?php }else{?>
-                            <li class="dropdown"><a href="<?=$server_root?>public/user/display-page/<?=$value['slug']?>/<?=$value['id']?>" class="dropbtn"><?= $value['name'] ?></a>
+                            <li class="dropdown"><a href="<?=$server_root?>user/display-page/<?=$value['slug']?>/<?=$value['id']?>" class="dropbtn"><?= $value['name'] ?></a>
                                 <div class="dropdown-content">
                                     <ul class="nav navbar-nav ">
                                        <?php foreach ($sub_page as $key => $sub) {?>
-                                            <li><a href="<?=$server_root?>public/user/display-page/<?=$sub['slug']?>/<?=$sub['id']?>"><?= $sub['name'] ?></a>
+                                            <li><a href="<?=$server_root?>user/display-page/<?=$sub['slug']?>/<?=$sub['id']?>"><?= $sub['name'] ?></a>
                                             </li>
                                         <?php }?>
                                     </ul>
@@ -47,7 +47,7 @@ $pages = $select_page->select_page();
                         </li>
                         <?php }?>
                 <?php }?>
-                <li><a href="<?=$server_root?>public/user/request-quote">Request a quote</a></li>
+                <li><a href="<?=$server_root?>user/request-quote">Request a quote</a></li>
             </ul>
         </div>
     </nav>

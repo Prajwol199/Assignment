@@ -6,10 +6,10 @@
                 <h1>PAGE NOT FOUND</h1>
                 <hr>
                 <h3><?=strtoupper( $page) ?></h3>
-                <button class="btn btn-default"><i class="glyphicon glyphicon-menu-left">
-                    </i><a href="<?='index.php'?>"> Go to site </a>
+                <button class="btn btn-default"><i class="glyphicon glyphicon-home">
+                    </i><a href="<?= $server_root ?>admin"> Go to site </a>
                 </button>
-            </div>s
+            </div>
         </div>
     </div>
 </div>

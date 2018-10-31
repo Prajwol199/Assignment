@@ -15,7 +15,7 @@ if(isset($_POST['delete-page'])){
     <?php endif; ?>
   </div>
   <div class="col-md-6">
-     <a style="color:white;" href="<?=$server_root?>admin/home.php?page=add_page"><button class="btn btn-warning btn btn-lg btn pull-right">Add New Page
+     <a style="color:white;" href="<?=$server_root?>admin/home.php?page=add_page"><button class="btn btn-warning btn btn-lg btn pull-right"><i class="glyphicon glyphicon-plus"></i> Add New Page
     </button></a>
   </div>
 </div>
@@ -38,13 +38,13 @@ if(isset($_POST['delete-page'])){
           <td><?= $value['parent_id'] ?></td>
           <td>
             <form method="post">
-            <button type="submit" name='delete-page' value="<?= $value['id']?>" class="btn btn-danger" onclick="return confirm('are you sure delete')">Delete</button> </form>
-            <a href="<?=$server_root?>admin/home/edit/<?= $value['id']?>"><button class="btn btn-success btn-md">Edit
+            <button type="submit" name='delete-page' value="<?= $value['id']?>" class="btn btn-danger" onclick="return confirm('are you sure delete')"><i class="glyphicon glyphicon-trash"></i> Delete</button> </form>
+            <a href="<?=$server_root?>admin/home/edit/<?= $value['id']?>"><button class="btn btn-success btn-md"><i class="glyphicon glyphicon-edit"></i> Edit
             </button></a>
           </td>
           <td>
-            <a href="<?=$server_root?>admin/home/view_image/<?= $value['id']?>"><button class="btn btn-primary btn-md">
-            View Image
+            <a href="<?=$server_root?>admin/home/view_image/<?= $value['id']?>"><button class="btn btn-primary btn-md"><i class="glyphicon glyphicon-eye-open"></i>
+             View Image
           </button></a>
           </td>
         </tr>

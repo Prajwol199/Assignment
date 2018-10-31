@@ -155,6 +155,7 @@ class PageController extends DatabaseController{
 	}
 
 	public function deletePages(){
+		global $server_root;
 		$id=$_POST['delete-page'];
 
 		$data=array(
@@ -166,7 +167,8 @@ class PageController extends DatabaseController{
 		if($delete == true){
 			$delete_meta = $this->delete_meta($id);
 			$_SESSION['msg'] = "page deleted";
-			header('Location:page_manager');
+			$redirect_path = $server_root.'admin/home/page_manager';				
+			header("Location:$redirect_path");
 		}
 	}
 
@@ -180,6 +182,7 @@ class PageController extends DatabaseController{
 	}
 
 	public function updatePages($id){
+		global $server_root;
 		$data = [];
 		if(isset($_POST['name']) && isset($_POST['des'])){
 			if(empty($_POST['name']) || empty($_POST['des'])){
