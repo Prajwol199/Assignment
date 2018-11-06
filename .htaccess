@@ -4,6 +4,7 @@ RewriteBase /cms/
 
 RewriteRule ^$ public/user.php?page=home [L,QSA]
 RewriteRule user/(.*)/(.*)/(.*) public/user.php?page=$1&slug=$2&id=$3 [L,QSA]
+RewriteRule user/(.*)/(.*) public/user.php?page=$1&id=$2 [L,QSA]
 RewriteRule user/(.*) public/user.php?page=$1
 
 ErrorDocument 404 http://localhost/cms/

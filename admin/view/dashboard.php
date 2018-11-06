@@ -26,10 +26,18 @@ $image = $selectImg->selectimage();
     <div class="carousel-inner">
         <div class="item active">
           <img src="<?=$server_root?>admin/static/images/logo.jpg" alt="Los Angeles" style="width:100%; height: 600px;">
+        <div class="carousel-caption">
+        <h3>Los Angeles</h3>
+        <p>LA is always so much fun!</p>
+      </div>
         </div>
 
         <div class="item">
           <img src="<?=$server_root?>admin/static/images/pageImage/5894f1f3f37d32429e02d76fe79a433b.jpg" alt="Chicago" style="width:100%;height: 600px;">
+        <div class="carousel-caption">
+          <h3>Chicago</h3>
+          <p>Thank you, Chicago!</p>
+        </div>
         </div>
       
         <div class="item">

@@ -35,11 +35,6 @@ class DatabaseController{
         return $this->db->insert($this->table_meta,$data);
     }
 
-    public function allUser($data=array()){
-        if (empty($data)) return false;
-    	return $this->db->select($this->tableName,$data);
-    }
-
     public function delete($data=array()){
         if (empty($data)) return false;
     	return $this->db->delete($this->tableName,$data);
@@ -88,7 +83,7 @@ class DatabaseController{
 
     public function view_image($data,$id){
         if(empty($data)) return false;
-        return $this->db->select($this->table_meta,$data,array('page_id'=>"$id"));
+        return $this->db->select($this->table_meta,$data,array('page_id'=>"$id",'page_type'=>'page'));
     }
 
     public function select_image_of_page($data){

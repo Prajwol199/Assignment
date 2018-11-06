@@ -89,7 +89,7 @@ class RequestQuoteController extends Database{
 		$admin_email = $email;
 
 		if($robotest){
-      	"You are a gutless robot.";
+      	echo "You are a gutless robot.";
         }else{
         	$this->mailer($email,$fname,$date,$lname,$phone,$peradd,$temadd,$city,$postal,$con,$ser,$note);
         }
@@ -122,7 +122,7 @@ class RequestQuoteController extends Database{
 		    $mail->Subject = 'Quote request from ' .$fname.' '.$lname;
 		    $mail->Body    = 'From :' .$mail->Username. '<br>
 									  To: '.$email.
-									  '<br>Reply to:' .$mail->Username.
+									  '<br>Reply To: ' .$mail->Username.
 									  '<br><br>
 										Hi Admin,<br>
 										You’ve received a quote request from website on:' .$date.

@@ -1,4 +1,4 @@
-<div class="col-md-12 navbar navbar-default container-fluid footer">
+<div class="col-md-12 footer">
 	<p align="center" class="copy"><b><?= $footer ?><b></p>
 </div>
 <script type="text/javascript" src="<?=$server_root?>admin/static/ckeditor/ckeditor.js"></script>

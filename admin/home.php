@@ -7,6 +7,9 @@ require_once __dir__.'/controller/ImageController.php';
 require_once __dir__.'/controller/SiteController.php';
 require_once __dir__.'/controller/UserEndController.php';
 require_once __dir__.'/controller/setting.php';
+require_once __dir__.'/controller/PostController.php';
+require_once __dir__.'/controller/sliderController.php';
+require_once __dir__.'/controller/Pagination.php';
 
 
 global $server_root;

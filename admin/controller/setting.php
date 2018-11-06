@@ -2,6 +2,7 @@
 	global $server_root;
 	global $site_name;
 	global $footer;
+	global $limit;
 	require_once __dir__.'/../model/database.php';
 	$conn = new database(); 
 
@@ -17,4 +18,5 @@
 		$server_root = $value['server_root'];
 		$site_name = $value['site_name'];
 		$footer = $value['footer'];
+		$limit = $value['page_limit'];
 	}

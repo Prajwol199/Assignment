@@ -107,7 +107,7 @@ class PageController extends DatabaseController{
 	 				$result = $this->imageId($data,$newName);
 	 				$value = mysqli_fetch_assoc($result);
 	 				foreach ($value as $key => $image_id) {
-	 					echo $image_id;
+	 					$image_id;
 	 				}
 
 	 				$page_field=array(
@@ -125,33 +125,21 @@ class PageController extends DatabaseController{
 	 				$id_page = $this->pageId($page_id,$pageName,$description);
 	 				$value_page = mysqli_fetch_assoc($id_page);
 	 				foreach ($value_page as $key => $id_page) {
-	 					echo $id_page;
+	 					$id_page;
 	 				}
-
 	 				$meta=array(
 	 					'page_type'=>'page',
 	 					'page_id'=>"$id_page",
 	 					'image_id'=>"$image_id"
 	 				);
-
 	 				$meta_result = $this->meta_save($meta);
 	 				if($meta_result == true){
-	 					$redirect_path = $server_root.'admin/home/page_manager';				
+	 					$redirect_path = $server_root.'admin/home/page-manager';				
 						header("Location:$redirect_path");
 	 				}
 	 			}
 	 		}
  		}
-	}
-
-	public function getPage(){
-		$data=array(
-			'*'
-		);
-
-		$field=$this->allUser($data);
-		$rows = $this->fetch($field);
-		return $rows;
 	}
 
 	public function deletePages(){
@@ -167,7 +155,7 @@ class PageController extends DatabaseController{
 		if($delete == true){
 			$delete_meta = $this->delete_meta($id);
 			$_SESSION['msg'] = "page deleted";
-			$redirect_path = $server_root.'admin/home/page_manager';				
+			$redirect_path = $server_root.'admin/home/page-manager';				
 			header("Location:$redirect_path");
 		}
 	}
@@ -195,7 +183,7 @@ class PageController extends DatabaseController{
 
 				if($update == true){
 					$_SESSION['msg'] = "page edited";
-					$redirect_path = $server_root.'admin/home/page_manager';				
+					$redirect_path = $server_root.'admin/home/page-manager';				
 					header("Location:$redirect_path");
 				}
 			}

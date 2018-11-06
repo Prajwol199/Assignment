@@ -1,6 +1,17 @@
 <?php
+  if(!isset($_GET['id'])){
+    $page = 1;
+  }else{
+    $page = $_GET['id'];
+  }
+  $select_page = new Pagination();
+  $field = $select_page->view_all_page($page);
+  $pagebar = $select_page->admin_page_bar();
+    foreach ($pagebar as $key => $value) {
+    $row = $value['pagination'];
+  }
+
 $add = new PageController();
-$field=$add->getPage();
 
 if(isset($_POST['delete-page'])){
     $objUser = new PageController();
@@ -15,7 +26,7 @@ if(isset($_POST['delete-page'])){
     <?php endif; ?>
   </div>
   <div class="col-md-6">
-     <a style="color:white;" href="<?=$server_root?>admin/home.php?page=add_page"><button class="btn btn-warning btn btn-lg btn pull-right"><i class="glyphicon glyphicon-plus"></i> Add New Page
+     <a style="color:white;" href="<?=$server_root?>admin/home/add-page"><button class="btn btn-warning btn btn-lg btn pull-right"><i class="glyphicon glyphicon-plus"></i> Add New Page
     </button></a>
   </div>
 </div>
@@ -43,7 +54,7 @@ if(isset($_POST['delete-page'])){
             </button></a>
           </td>
           <td>
-            <a href="<?=$server_root?>admin/home/view_image/<?= $value['id']?>"><button class="btn btn-primary btn-md"><i class="glyphicon glyphicon-eye-open"></i>
+            <a href="<?=$server_root?>admin/home/view-image/<?= $value['id']?>"><button class="btn btn-primary btn-md"><i class="glyphicon glyphicon-eye-open"></i>
              View Image
           </button></a>
           </td>
@@ -55,3 +66,23 @@ if(isset($_POST['delete-page'])){
         </div>
       <?php } ?>
 </table>
+
+<?php if($row > $limit){;?>
+  <div class="pagination">
+    <?php if($page > 1) { ?>
+      <a href="<?=$server_root?>admin/home/page-manager/<?= ($page-1) ?>">&laquo;</a>
+    <?php } ?>
+    <?php 
+      $display_page = ceil($row/$limit);
+      for($i=1;$i<=$display_page;$i++){?>
+    <a href="<?=$server_root?>admin/home/page-manager/<?=$i?>"
+      <?php
+        if($page == $i ){?>
+        class="active" 
+      <?php } ?>
+      ><?=$i?></a>
+    <?php } if($page < $display_page) { ?>
+    <a href="<?=$server_root?>admin/home/page-manager/<?= ($page+1)?>">&raquo;</a>
+    <?php }?>
+  </div>
+<?php }?>

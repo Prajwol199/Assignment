@@ -29,9 +29,22 @@ class Database{
         return self::$_instantiate;
     }
 
+    //  public function clean( &$data ){
+    //     foreach( $data as $key => $value ){
+    //         if( is_array( $value ) ){
+    //             clean( $data[ $key ] );
+    //         }else{
+    //             $temp = trim($value);
+    //             $temp = mysqli_real_escape_string($this->connection(),$value );
+    //             $data[ $key ] = $temp;
+    //         }
+    //     }
+    // }
+
     public function insert($tableName = "", $data = array()){
          # INSERT INTO TABLENAME SET name = 'hello', age='3';
         if( is_array( $data ) && count( $data ) > 0 ){
+            // $this->clean($data);
             $sql = 'INSERT INTO ' . $tableName . ' SET ';
 
             foreach( $data as $field => $value ){
@@ -111,5 +124,42 @@ class Database{
             return $result;
         }
         return false;
+    }
+
+    public function select_recent_post($tableName){
+        $sql = "SELECT * FROM (
+                        SELECT * FROM $tableName WHERE isactive = 1 ORDER BY id DESC LIMIT 4 
+                        ) as r ORDER BY id";
+        $result= mysqli_query($this->connection(),$sql);
+        return $result;
+    }
+
+    public function select_page_bar($tableName,$data=''){
+        $sql = "SELECT COUNT( * ) AS pagination FROM $tableName";
+        if (!empty($data)) {
+             $sql.=' WHERE ';
+            foreach ($data as $key => $value) {
+                $sql .=$key.'="' .$value. '" AND ';                     
+            }
+            $sql = substr($sql,0,-4);
+        }
+        $result = mysqli_query($this->connection(),$sql);
+        return $result;
+    }
+
+        public function pagination($tableName,$offset,$limit,$criteria=''){
+        $sql = "SELECT * FROM (
+                        SELECT * FROM $tableName";
+                        if (!empty($criteria)) {
+                            $sql.=' WHERE ';
+                            foreach ($criteria as $key => $value) {
+                                $sql .=$key.'="' .$value. '" AND ';                     
+                            }
+                            $sql = substr($sql,0,-4);
+                        }
+                        $sql .=" ORDER BY id LIMIT $offset,$limit 
+                        ) as r ORDER BY id";
+        $result= mysqli_query($this->connection(),$sql);
+        return $result;
     }
 }

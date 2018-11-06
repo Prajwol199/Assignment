@@ -41,13 +41,15 @@ class User extends DatabaseController{
 		);
 		$result = $this->view_image($data,$id);
 		$rows = $this->fetch($result);
-		$get_id=[];
-		foreach ($rows as $key => $value) {
-			$get_id[] = $value['image_id'];
+		if(count($rows) > 0){
+			$get_id=[];
+			foreach ($rows as $key => $value) {
+				$get_id[] = $value['image_id'];
+			}
+			$images = $this->select_image_of_page($get_id);
+			$page_image = $this->fetch($images);
+			return $page_image;
 		}
-		$images = $this->select_image_of_page($get_id);
-		$page_image = $this->fetch($images);
-		return $page_image;
 	}
 
 	public function isLoginUser(){
@@ -114,7 +116,7 @@ class User extends DatabaseController{
 		if($delete == true){
 			unlink('../admin/static/images/pageImage/' .$name);
 			unlink('../admin/static/images/cropImage/' .$cropName);
-			$redirect_path = $server_root.'admin/home/view_image/'.$page_id_redirect;				
+			$redirect_path = $server_root.'admin/home/view-image/'.$page_id_redirect;			
 			header("Location:$redirect_path");
 		}
 	}
@@ -183,7 +185,7 @@ class User extends DatabaseController{
 
 			$meta_result = $this->meta_save($meta);
 			if($meta_result == true){
-				$redirect_path = $server_root.'admin/home/view_image/'.$id;				
+				$redirect_path = $server_root.'admin/home/view-image/'.$id;				
 				header("Location:$redirect_path");
 
 			}

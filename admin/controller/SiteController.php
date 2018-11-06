@@ -4,6 +4,7 @@ require_once __dir__.'/setting.php';
 
 class SiteController extends Database{
 	protected $table='setting';
+	protected $table_subscriber = 'subscriber';
 
 	public function fetch($data){
     	$rows=[];
@@ -76,7 +77,7 @@ class SiteController extends Database{
 				);
 
 				if($this->update($this->table,$data,$criteria)){
-					header('Location:'.$server_root.'admin/home/site_configuration');
+					header('Location:'.$server_root.'admin/home/site-configuration');
 				}else{
 					echo "Not updated";
 				}
@@ -86,7 +87,38 @@ class SiteController extends Database{
 		}
 	}
 
+	public function select_subscriber(){
+		$data = array(
+			'*'
+		);
+		$result = $this->select($this->table_subscriber,$data);
+		$all_subscriber = $this->fetch($result);
+		return $all_subscriber;
+	}
+
+	public function delete_subscriber(){
+		global $server_root;
+		$id = $_POST['delete-subscriber'];
+		$data = array(
+			'id'=>"$id"
+		);
+		if($this->delete($this->table_subscriber,$data)){
+			$_SESSION['delete'] = "Delete Successfully";
+			header('Location:'.$server_root.'admin/home/subscribers');
+		}
+	}
+
+	public function export_subscriber(){
+		header('Content-Type: text/csv; charset=utf-8');  
+		header('Content-Disposition: attachment; filename=data.csv'); 
+		ob_end_clean(); 
+		$output = fopen("php://output", "w");  
+		fputcsv($output, array('ID', 'Email', 'Date'));  
+		$query =$this->select($this->table_subscriber,array('*'));  
+		while($row = mysqli_fetch_assoc($query)){  
+		    fputcsv($output, $row);  
+		}  
+		fclose($output); 
+		exit();
+	}
 }
-
-
-?>
