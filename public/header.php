@@ -16,7 +16,7 @@ $pages = $select_page->select_page();
 
 </head>
 <body>
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<button onclick="topFunction()" id="myBtn" title="Go to top" class="btn btn-danger"><i class="glyphicon glyphicon-hand-up"></i> Top</button>
 <div class=" navbar header">
     <div class="col-md-12 ">
         <div class="col-md-3">
@@ -26,41 +26,43 @@ $pages = $select_page->select_page();
             <h1 align="center"><?= $site_name ?></h1>       
         </div>
         <div class="col-md-2 date">
-            <h4 align="center"><?= date("l").' '.date("Y-m-d") ?></h4>
+            <h4 align="center"><b><?= date("l").' '.date("Y-m-d") ?><br><br><div id="MyClockDisplay" class="clock"></div></b></h4>
+            
+        </div>
+
+        <div class="col-md-12">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav " style="padding-left:300px;">
+                        <?php foreach ($pages as $key => $value) { ?>
+                            <?php $sub_page = $select_page->dropdown_child($value['id']);?>
+                            <?php 
+                            if(count($sub_page) == 0){ ?>
+                                <li><a href="<?=$server_root?>user/display-page/<?=$value['slug']?>/<?=$value['id']?>"><?=$value['name'] ?></a>
+                                    <?php } else { ?>
+                                    <li class="dropdown"><a href="<?=$server_root?>user/display-page/<?=$value['slug']?>/<?=$value['id']?>" class="dropbtn"><?= $value['name'] ?></a>
+                                        <div class="dropdown-content">
+                                            <ul class="nav navbar-nav ">
+                                               <?php foreach ($sub_page as $key => $sub) {?>
+                                                    <li><a href="<?=$server_root?>user/display-page/<?=$sub['slug']?>/<?=$sub['id']?>"><?= $sub['name']?></a>
+                                                        <!--  <?php
+                                                            var_dump( headers_sent() );
+                                                        ?> -->
+                                                    </li>
+                                                <?php }?>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </li>                        
+                            <?php } ?> 
+                        <?php } ?>
+                        <li><a href="<?=$server_root?>user/request-quote">Request a quote</a></li>
+                        <li><a href="<?=$server_root?>user/subscribe">Subscribe</a></li>
+                        <li><a href="<?=$server_root?>user/contact-us">Contact us</a></li>
+                    </ul>
+                </div>
+            </nav>
         </div>
     </div>
 </div>
 
-<div class="col-md-12">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav " style="padding-left:300px;">
-                <?php foreach ($pages as $key => $value) { ?>
-                    <?php $sub_page = $select_page->dropdown_child($value['id']);?>
-                    <?php 
-                    if(count($sub_page) == 0){ ?>
-                        <li><a href="<?=$server_root?>user/display-page/<?=$value['slug']?>/<?=$value['id']?>"><?=$value['name'] ?></a>
-                            <?php } else { ?>
-                            <li class="dropdown"><a href="<?=$server_root?>user/display-page/<?=$value['slug']?>/<?=$value['id']?>" class="dropbtn"><?= $value['name'] ?></a>
-                                <div class="dropdown-content">
-                                    <ul class="nav navbar-nav ">
-                                       <?php foreach ($sub_page as $key => $sub) {?>
-                                            <li><a href="<?=$server_root?>user/display-page/<?=$sub['slug']?>/<?=$sub['id']?>"><?= $sub['name']?></a>
-<!--                                                 <?php
-                                                    var_dump( headers_sent() );
-                                                ?> -->
-                                            </li>
-                                        <?php }?>
-                                    </ul>
-                                </div>
-                            </li>
-                        </li>                        
-                    <?php } ?> 
-                <?php } ?>
-                <li><a href="<?=$server_root?>user/request-quote">Request a quote</a></li>
-                <li><a href="<?=$server_root?>user/subscribe">Subscribe</a></li>
-                <li><a href="<?=$server_root?>user/contact-us">Contact us</a></li>
-            </ul>
-        </div>
-    </nav>
-</div>

@@ -119,15 +119,3 @@ function quoteValidate(){
     return true;
 }
 
-// $(document).ready(function(){
-
-//   $('#form').validate({
-//     rules:{
-//         email:"required",
-//         password:"required"
-//     }
-
-//   });
-
-// });
-

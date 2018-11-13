@@ -19,6 +19,7 @@ $image = $dropdown->selectimage();
         </div>
         <?php unset($_SESSION['success']) ?>
     <?php endif; ?> 
+<div class="content">
 <form method="post" enctype="multipart/form-data">
 	<div class="col-md-6 col-md-offset-3" style="background: pink; padding: 30px;">
 	   	<div class="form-group">
@@ -45,3 +46,4 @@ $image = $dropdown->selectimage();
             <h1 align="center">Image not found</h1>
      	</div>
       <?php } ?>
+</div>

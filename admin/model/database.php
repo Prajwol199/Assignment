@@ -147,19 +147,18 @@ class Database{
         return $result;
     }
 
-        public function pagination($tableName,$offset,$limit,$criteria=''){
-        $sql = "SELECT * FROM (
-                        SELECT * FROM $tableName";
-                        if (!empty($criteria)) {
-                            $sql.=' WHERE ';
-                            foreach ($criteria as $key => $value) {
-                                $sql .=$key.'="' .$value. '" AND ';                     
-                            }
-                            $sql = substr($sql,0,-4);
+    public function pagination($tableName,$offset,$limit,$criteria=''){
+    $sql = "SELECT * FROM (
+                    SELECT * FROM $tableName";
+                    if (!empty($criteria)) {
+                        $sql.=' WHERE ';
+                        foreach ($criteria as $key => $value) {
+                            $sql .=$key.'="' .$value. '" AND ';                     
                         }
-                        $sql .=" ORDER BY id LIMIT $offset,$limit 
-                        ) as r ORDER BY id";
-        $result= mysqli_query($this->connection(),$sql);
-        return $result;
+                        $sql = substr($sql,0,-4);
+                    }
+                    $sql .=" ORDER BY id LIMIT $offset,$limit ) as r ORDER BY id";
+    $result= mysqli_query($this->connection(),$sql);
+    return $result;
     }
 }

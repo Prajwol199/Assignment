@@ -1,0 +1,170 @@
+*{
+    margin:0;
+    padding:0;
+}
+.nav{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:9999;
+    height:100%;
+    width:200px;
+    background:#212121;
+    color:white;
+}
+.nav-top{
+    height:130px;
+    padding:20px;
+    background:#353A42;
+}
+.nav-top img{
+    height:100px;
+    border-radius:60px;
+    float:left;
+}
+.nav-top h3,.nav-top p{
+    line-height:20px;
+}
+.nav-top p{
+    font-size:10px;
+    font-style:italic;
+    color:#ececec;
+}
+.navlinks{
+    width:inherit;
+}
+
+.menu ul li{
+    list-style:none;
+    padding:0 0 0 0;
+}
+.menu ul li a{
+    color:white;
+    padding:20px 20px 20px 30px;
+    border-bottom:1px solid #2C2C2C;
+    display:block;
+}
+.menu ul li a:hover{
+    text-decoration:none;
+    background:#2C2C2C;
+}
+
+.menu ul li.drop-down > ul li a{
+    padding-left:60px;
+}
+.menu ul li.drop-down ul{
+    display:none;
+}
+
+@font-face
+{
+    font-family:proxima;
+    src:url(Boot/fonts/proxima.otf);
+}
+@font-face
+{
+    font-family:proxima-bold;
+    src:url(../fonts/ProximaBold.otf);
+}
+
+a:hover{
+    text-decoration:none;
+}
+
+body{
+    background: #ccc;
+    font-size:12px!important;
+    color:#6B6B6B;
+}
+
+p{
+    font-size:14px!important;
+}
+
+.logo-wrapper {
+    background: none !important;
+}
+
+.top-time{
+    background-color: #6f5499;
+    color: white;
+    height:100px;
+    width:100%;
+    /*position:fixed;*/
+    z-index:20;
+    box-shadow:3px 3px 3px rgba(0,0,0,0.4);
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin:0;
+}
+
+.container-fluid {
+    padding-left: 340px;
+}
+
+@media only screen and (max-width : 992px) {
+    .container-fluid {
+        padding-left: 0;
+    }
+}
+
+.page-top{
+    position:relative;
+    width:100%;
+    top:80px;
+    color:white;
+    height:60px;
+    background:#2995cb;
+}
+.page-top h3{
+    padding:15px 0;
+
+}
+
+.user-setting{
+    float:right;
+    position:fixed;
+    top:10px;
+    right:30px;
+    z-index:20;
+    margin-top: 10px;
+    margin-right: 100px;
+}
+
+.dropdown-content {
+    background-color: #fff;
+    margin: 0;
+    display: none;
+    min-width: 150px;
+    max-height: 650px;
+    overflow-y: auto;
+    opacity: 0;
+    position:absolute;
+    z-index: 999;
+    will-change: width,height;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+    font-size: 14px;
+    color: #333;
+    display: block;
+    padding: 10px 15px;
+}
+
+section .chart{
+    box-shadow:0 0 2px 1px rgba(0,0,0,0.4);
+    height:auto;
+    background:#eee;
+    padding:15px;
+    border:4px solid white;
+}
+
+.news{
+    background: #59C909;
+}
+
+.loginPage{
+    margin-top: 100px;
+
+}

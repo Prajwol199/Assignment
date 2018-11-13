@@ -7,7 +7,7 @@ $image = $selectImg->selectimage(); -->
 	$recent_post_db = $recent_post->recent_post();
 	$slider = $recent_post->select_slider();
 ?>
-<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top: 70px;">
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
 		<?php foreach ($slider as $key => $value) { if ($key == 0){ ?>
@@ -28,7 +28,7 @@ $image = $selectImg->selectimage(); -->
 	    </div>
 			<?php }else{ ?>
 	    <div class="item">
-	      <img src="<?=$server_root?>admin/static/images/sliderImage/<?=$value['image']?>" alt="Chicago" style="width:100%;height: 600px;">
+	      <img src="<?=$server_root?>admin/static/images/sliderImage/<?=$value['image']?>" alt="Chicago" style="width:100%;height: 600px;" >
 	    <div class="carousel-caption">
 	      <h3><?=$value['title']?></h3>
 	      <p><?=$value['description']?></p>
@@ -65,9 +65,9 @@ $image = $selectImg->selectimage(); -->
 				$id = $value['id'];
 				$image = $recent_post->select_image_recent($id);
 				foreach ($image as $key => $image) { ?>
-					<a class="example-image-link" href="<?= $server_root?>admin/static/images/pageImage/<?= $image['image'] ?>" data-lightbox="a"><img src="<?= $server_root?>admin/static/images/cropImage/<?= $image['crop'] ?>" class="img-responsive img-rounded " style=" padding: 20px;"></a>
+					<a class="example-image-link" href="<?= $server_root?>admin/static/images/pageImage/<?= $image['image'] ?>" data-lightbox="a"><img src="<?= $server_root?>admin/static/images/cropImage/<?= $image['crop'] ?>" class="img-responsive img-rounded " style=" padding: 20px; margin-left: 25%"></a>
 			<?php } ?>
-			<a href="<?= $server_root?>user/read-more/<?= $value['id']?>" style="font-size: 20px;"><button class="btn btn-success">Read More</button></a>
+			<span class="read"><a href="<?= $server_root?>user/read-more/<?= $value['id']?>" style="font-size: 20px;"><button class="btn btn-success">Read More</button></a></span>
 		</div>
 	<?php } ?>
 	<span class="viewall"><a href="<?= $server_root?>user/view-all-post" align="center"><button class="btn btn-primary btn-lg">View All Posts</button></a></span>

@@ -147,12 +147,15 @@ class UserEndController extends Database{
 		$meta_image_id = $this->select($this->table_meta,array('image_id'),$condition);
 		$fetch_image_id = $this->fetch($meta_image_id);
 		foreach ($fetch_image_id as $key => $value) {
-			$id = $value['image_id'];
+			$id_post = $value['image_id'];
 		}
-
-		$select_image = $this->select($this->table_image,array('*'),array('id'=>"$id"));
-		$fetch_image = $this->fetch($select_image);
-		return $fetch_image;
+		if(!empty($id_post)){
+			$select_image = $this->select($this->table_image,array('*'),array('id'=>"$id_post"));
+			$fetch_image = $this->fetch($select_image);
+			return $fetch_image;
+		}else{
+			echo "Image not found";
+		}
 	}
 
 	public function select_post_info(){

@@ -7,38 +7,43 @@
     <title><?=$title?></title>
     <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/css/navigation.css">
     <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/css/bootstrap-glyphicons.css">
     <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/lightbox/lightbox.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
 
 </head>
 <body>
-<div class=" navbar header">
-    <div class="col-md-12">
-        <div class="col-md-3">
-            <a href="<?=$server_root?>admin"><img class="img-responsive img-circle" src="<?=$server_root?>/admin/static/images/logo.jpg" width="200" ></a>
-        </div>
-        <div class="col-md-9 title">
-            <h1 align="center" style="margin-left:-250px;"><?= $site_name ?></h1>       
+<div class="top-time">
+    <div class="container-fluid">
+               <div class="col-md-12">
+            <h1 align="center" class="admin_title"><?= $site_name ?></h1>       
         </div>
     </div>
 </div>
-<div class="col-md-12">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav" style="padding-left:100px;">
-                <li><a href="<?=$server_root?>admin/home/page-manager">Page Manager</a></li>
-                <li><a href="<?=$server_root?>admin/home/post-manager">Post Manager</a></li>
-                <li><a href="<?=$server_root?>admin/home/slider-manager">Slider Manager</a></li>
-                <li><a href="<?=$server_root?>admin/home/image-manager">Image Manager</a></li>
-                <li><a href="<?=$server_root?>admin/home/admin-manager">Admin Manager</a></li>
-                <li><a href="<?=$server_root?>admin/home/site-configuration">Site Configuration</a></li>
-                <li><a href="<?=$server_root?>admin/home/subscribers">Subscribers</a></li>
-                <li><a href="<?=$server_root?>admin/home.php?page=logout">Logout</a></li>
+<div class="nav">
+    <div class="nav-top">
+        <a href="<?=$server_root?>admin"><img class="img-responsive img-circle" src="<?=$server_root?>/admin/static/images/logo.jpg" width="150" ></a>
+        <h4></h4>
+        <p></p>
+    </div>
+
+    <div class="navlinks">
+        <div class="menu">
+            <ul>
+                <li><a href="<?=$server_root?>admin/home/page-manager"><i class="glyphicon glyphicon-sound-dolby"></i> Page Manager</a></li>
+                <li><a href="<?=$server_root?>admin/home/post-manager"><i class="glyphicon glyphicon-book"></i> Post Manager</a></li>
+                <li><a href="<?=$server_root?>admin/home/slider-manager"><i class="glyphicon glyphicon-fast-forward"> </i> Slider Manager</a></li>
+                <li><a href="<?=$server_root?>admin/home/image-manager"><i class="glyphicon glyphicon-picture"></i> Image Manager</a></li>
+                <li><a href="<?=$server_root?>admin/home/admin-manager"><i class="glyphicon glyphicon-user"> </i> Admin Manager</a></li>
+                <li><a href="<?=$server_root?>admin/home/site-configuration"><i class="glyphicon glyphicon-cloud-upload"></i> Site Configuration</a></li>
+                <li><a href="<?=$server_root?>admin/home/subscribers"><i class="glyphicon glyphicon-download-alt"></i> Subscribers</a></li>
+                <li><a href="<?=$server_root?>admin/home/logout"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
             </ul>
         </div>
-    </nav>
-</div>
+    </div>
+</div><!--end of navigation-->
