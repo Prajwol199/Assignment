@@ -11,8 +11,8 @@ foreach ($pages as $key => $value) {
 $image = $select_page->select_image();
 ?>
 
-<div class="col-md-12">
-	<h1 align="center"><b><?= $name ?></b></h1>
+<div class="col-md-12" style="background-color: #bbc0c4">
+	<h1 align="center" style="font-size: 40px;"><b><?= $name ?></b></h1>
 
 	<div class="description">
 		<p align="center"><?= $description ?></p>
@@ -21,9 +21,19 @@ $image = $select_page->select_image();
 
 <?php if(count($image)>0) {?>
 	<?php foreach ($image as $key => $value) {?>
-		<div class="col-md-4" style="padding:30px;">
-			<a href="<?= $server_root ?>admin/static/images/pageImage/<?= $value['image'] ?>" data-lightbox="<?= $name ?>"><img src="<?= $server_root ?>admin/static/images/cropImage/<?= $value['crop'] ?>" width="300" height="250" style="padding: 10px;"><br></a>
-		</div>
+		<?php if (count($image) == 1) { ?>
+			<div class="col-md-12 display_page">
+				<a href="<?= $server_root ?>admin/static/images/pageImage/<?= $value['image'] ?>" data-lightbox="<?= $name ?>"><img src="<?= $server_root ?>admin/static/images/cropImage/<?= $value['crop'] ?>" width="300" height="250" class="center"><br></a>
+			</div>
+		<?php } elseif (count($image) == 2) { ?>
+			<div class="col-md-6 display_page">
+				<a href="<?= $server_root ?>admin/static/images/pageImage/<?= $value['image'] ?>" data-lightbox="<?= $name ?>"><img src="<?= $server_root ?>admin/static/images/cropImage/<?= $value['crop'] ?>" width="300" height="250" class="center"><br></a>
+			</div>
+		<?php }else{ ?>
+			<div class="col-md-4 display_page">
+				<a href="<?= $server_root ?>admin/static/images/pageImage/<?= $value['image'] ?>" data-lightbox="<?= $name ?>"><img src="<?= $server_root ?>admin/static/images/cropImage/<?= $value['crop'] ?>" width="300" height="250" class="center"><br></a>
+			</div>
+		<?php } ?>
 	<?php } ?>
 <?php }else{ ?>
 	    <div class="alert alert-success">

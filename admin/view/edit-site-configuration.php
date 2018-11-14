@@ -18,7 +18,7 @@ foreach ($data as $key => $value) {
 
 ?>
 <div class="content">
-	<div class="loginPage col-md-6 col-md-offset-3">
+	<div class="small_content col-md-6 col-md-offset-3">
 	    <div class="panel panel-primary">
 	    	<div class="panel-heading" align="center">Edit Site Configiration</div>
 	    		<div class="panel-body">

@@ -44,21 +44,23 @@
 <?php } ?>
 
 <?php if($row > $limit){;?>
-  <div class="pagination">
-    <?php if($page > 1) { ?>
-      <a href="<?=$server_root?>user/view-all-post/page/<?= ($page-1) ?>">&laquo;</a>
-    <?php } ?>
-    <?php 
-      $display_page = ceil($row/$limit);
-      for($i=1;$i<=$display_page;$i++){?>
-    <a href="<?=$server_root?>user/view-all-post/page/<?=$i?>"
-      <?php
-        if($page == $i ){?>
-        class="active" 
+  <div class="page_display">
+    <div class="pagination">
+      <?php if($page > 1) { ?>
+        <a href="<?=$server_root?>user/view-all-post/page/<?= ($page-1) ?>">&laquo;</a>
       <?php } ?>
-      ><?=$i?></a>
-    <?php } if($page < $display_page) { ?>
-    <a href="<?=$server_root?>user/view-all-post/page/<?= ($page+1)?>">&raquo;</a>
-    <?php }?>
+      <?php 
+        $display_page = ceil($row/$limit);
+        for($i=1;$i<=$display_page;$i++){?>
+      <a href="<?=$server_root?>user/view-all-post/page/<?=$i?>"
+        <?php
+          if($page == $i ){?>
+          class="active" 
+        <?php } ?>
+        ><?=$i?></a>
+      <?php } if($page < $display_page) { ?>
+      <a href="<?=$server_root?>user/view-all-post/page/<?= ($page+1)?>">&raquo;</a>
+      <?php }?>
+    </div>
   </div>
 <?php }?>

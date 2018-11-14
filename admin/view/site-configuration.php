@@ -4,7 +4,7 @@ $site_data = $siteConfig->select_site();
 
 ?>
 <div class="content">
-    <div class="loginPage col-md-6 col-md-offset-3">
+    <div class="small_content col-md-6 col-md-offset-3">
         <div class="panel panel-primary">
         	<div class="panel-heading" align="center">Site Configuration</div>
         	<table class="table">

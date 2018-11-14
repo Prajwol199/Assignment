@@ -93,6 +93,7 @@
   <?php } ?>
 
   <?php if($row > $limit){;?>
+  <div class="page_display">
     <div class="pagination">
       <?php if($page > 1) { ?>
         <a href="<?=$server_root?>admin/home/post-manager/<?= ($page-1) ?>">&laquo;</a>
@@ -110,5 +111,6 @@
       <a href="<?=$server_root?>admin/home/post-manager/<?= ($page+1)?>">&raquo;</a>
       <?php }?>
     </div>
+  </div>
   <?php }?>
 </div>

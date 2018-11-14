@@ -4,11 +4,10 @@
 ?>
 <div class="col-md-12 footer">
 	<u><h2 align="center">Pages</h2></u>
-	<?php foreach ($select_page as $key => $value) { ?>
-		<div align="center">
-			<a href="<?=$server_root?>user/display-page/<?=$value['slug']?>/<?=$value['id']?>" style="color: white;"><?= $value['name'] ?></a><br>
-		</div>
-	<?php } ?>
+	<div align="center" class="page">
+	<?php foreach ($select_page as $key => $value) { ?>		
+			<a href="<?=$server_root?>user/display-page/<?=$value['slug']?>/<?=$value['id']?>" style="color: white;"><?= $value['name'] ?></a>&nbsp &nbsp &nbsp		
+	<?php } ?><br>
 	<br>
 	<p align="center"><a href=""><i class="fa fa-facebook-square" style="font-size:36px;"></i></a>
 					<a href=""><i class="fa fa-twitter" style="font-size:36px;"></i></a>
@@ -70,8 +69,6 @@ function topFunction() {
 	showTime();
 </script>
 <!-------------------- Digital clock ---------------------->
-
-
 <script type="text/javascript" src="<?=$server_root?>admin/static/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="<?=$server_root?>admin/static/js/script.js"></script>
 <script type="text/javascript" src="<?=$server_root?>admin/static/js/bootstrap.min.js"></script>

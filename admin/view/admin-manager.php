@@ -4,7 +4,7 @@ $result = $admin_manager->admin_manager();
 
 ?>
 <div class="content">
-    <div class="loginPage col-md-6 col-md-offset-3">
+    <div class=" small_content col-md-6 col-md-offset-3">
         <div class="panel panel-primary">
         	<div class="panel-heading" align="center">Admin manager</div>
         	<table class="table">

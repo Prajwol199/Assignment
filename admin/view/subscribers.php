@@ -31,8 +31,9 @@ if(isset($_POST['export'])){
                 <td><?= $value['email']; ?></td>
                 <td><?=$value['date']?></td>
                 <td>
-                	<form method="post">
-                  <button type="submit" name='delete-subscriber' value="<?=$value['id']?>" class="btn btn-danger" onclick="return confirm('are you sure delete')"><i class="glyphicon glyphicon-trash"></i> Delete</button> </form>
+                <form method="post">
+                  <button type="submit" name='delete-subscriber' value="<?=$value['id']?>" class="btn btn-danger" onclick="return confirm('are you sure delete')"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                </form>
                 </td>
               </tr>
             <?php } ?>
