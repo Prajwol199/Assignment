@@ -70,7 +70,8 @@ function topFunction() {
 </script>
 <!-------------------- Digital clock ---------------------->
 <script type="text/javascript" src="<?=$server_root?>admin/static/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="<?=$server_root?>admin/static/js/script.js"></script>
+<!-- <script type="text/javascript" src="<?=$server_root?>admin/static/js/script.js"></script> -->
+<script type="text/javascript" src="<?=$server_root?>admin/static/js/script.min.js"></script>
 <script type="text/javascript" src="<?=$server_root?>admin/static/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?=$server_root?>admin/static/lightbox/lightbox-plus-jquery.min.js"></script>
 </body>

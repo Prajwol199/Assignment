@@ -23,9 +23,13 @@
 }
 
 .footer{
-	margin-top: 5px;
+	margin-top: 20px;
     background-color: #242729;
     color: #bbc0c4;
+    /*height: 40px;*/
+    /*position:absolute;*/
+    bottom:0px;
+    width:100%;
 }
 
 .footer a {
