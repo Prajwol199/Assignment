@@ -15,11 +15,11 @@ $result = $admin_manager->admin_manager();
         	    <th>action</th>
         	  </tr>
         	  <?php foreach ($result as $key => $value) { ?>
-    			<td><?=$key+1?></td> 
-         		<td><?= ucfirst($value['name']) ?></td>
-        		<td><?= $value['email']?></td>
+    			<td><?php echo$key+1?></td> 
+         		<td><?php echo ucfirst($value['name']) ?></td>
+        		<td><?php echo $value['email']?></td>
         		<td>
-        			<a href="edit-admin/<?= $value['id']?>">
+        			<a href="edit-admin/<?php echo $value['id']?>">
                         <button class="btn btn-success btn-md">
                             Change Password
                 		</button>

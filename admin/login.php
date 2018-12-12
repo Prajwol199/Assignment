@@ -47,7 +47,7 @@ if(isset($_POST['login'])){
                             <label for="rem"> Remember me</label>
                         </div>
 
-                       <a href="<?=$server_root?>public/recover_password.php">Forgot password?</a>
+                       <a href="<?php echo$server_root?>public/recover_password.php">Forgot password?</a>
 
                         <div class="form-group">
                             <button class="btn btn-success btn pull-right" name="login">LogIn</button>
@@ -58,6 +58,6 @@ if(isset($_POST['login'])){
         </div>
     </div>
 </div>
-<script type="text/javascript" src="<?=$server_root?>admin/static/js/script.js"></script>
+<script type="text/javascript" src="<?php echo$server_root?>admin/static/js/script.js"></script>
 </body>
 </html>

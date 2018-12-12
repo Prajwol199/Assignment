@@ -22,7 +22,7 @@
 		<form method="post" enctype="multipart/form-data" >
 			<input type="file" name="file">
 			<br>
-			<button class="btn btn-success btn-lg" name="addPageImage" value="<?=$id=$_GET['id'];?>">
+			<button class="btn btn-success btn-lg" name="addPageImage" value="<?php echo$id=$_GET['id'];?>">
 				<i class="glyphicon glyphicon-plus"></i> Add Image
 			</button>
 		</form>
@@ -32,9 +32,9 @@
 	<?php if(count($image)>0) {?>
 		<?php foreach ($image as $key => $value) {?>
 			<div class="col-md-4 navbar  navbar-default" style="padding:30px;">
-				<img src="<?=$server_root?>/admin/static/images/pageImage/<?= $value['image'] ?>" width="300" height="250" style="padding: 10px;"><br>
+				<img src="<?php echo$server_root?>/admin/static/images/pageImage/<?php echo $value['image'] ?>" width="300" height="250" style="padding: 10px;"><br>
 				<form method="post" >
-					<a onclick="return confirm('are you sure delete')"><button class="btn btn-danger" name="delete-image" value="<?= $value['id']?>">
+					<a onclick="return confirm('are you sure delete')"><button class="btn btn-danger" name="delete-image" value="<?php echo $value['id']?>">
 						<i class="glyphicon glyphicon-trash"></i> Delete
 					</button></a>
 				</form>

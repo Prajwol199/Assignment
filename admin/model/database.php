@@ -29,18 +29,6 @@ class Database{
         return self::$_instantiate;
     }
 
-    //  public function clean( &$data ){
-    //     foreach( $data as $key => $value ){
-    //         if( is_array( $value ) ){
-    //             clean( $data[ $key ] );
-    //         }else{
-    //             $temp = trim($value);
-    //             $temp = mysqli_real_escape_string($this->connection(),$value );
-    //             $data[ $key ] = $temp;
-    //         }
-    //     }
-    // }
-
     public function insert($tableName = "", $data = array()){
          # INSERT INTO TABLENAME SET name = 'hello', age='3';
         if( is_array( $data ) && count( $data ) > 0 ){

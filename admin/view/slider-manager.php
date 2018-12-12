@@ -14,7 +14,7 @@ if(isset($_POST['delete-slider'])){
       <?php endif; ?>
     </div>
     <div class="col-md-6">
-       <a style="color:white;" href="<?=$server_root?>admin/home/add-slider"><button class="btn btn-warning btn btn-lg btn pull-right"><i class="glyphicon glyphicon-plus"></i> Add New Slider
+       <a style="color:white;" href="<?php echo$server_root?>admin/home/add-slider"><button class="btn btn-warning btn btn-lg btn pull-right"><i class="glyphicon glyphicon-plus"></i> Add New Slider
       </button></a>
     </div>
   </div>
@@ -30,16 +30,16 @@ if(isset($_POST['delete-slider'])){
      <?php 
           foreach ($field as $key => $value) { ?>
             <tr>
-              <td><?=$key+1?></td>
-              <td><?= $value['title']; ?></td>
-              <td><?= $value['description']; ?></td>
+              <td><?php echo$key+1?></td>
+              <td><?php echo $value['title']; ?></td>
+              <td><?php echo $value['description']; ?></td>
               <td>
                 <form method="post">
-                <button type="submit" name='delete-slider' value="<?= $value['id']?>" class="btn btn-danger" onclick="return confirm('are you sure delete')"><i class="glyphicon glyphicon-trash"></i> Delete</button> </form>
-                <a href="<?=$server_root?>admin/home/edit-slider/<?= $value['id']?>"><button class="btn btn-success btn-md"><i class="glyphicon glyphicon-edit"></i> Edit
+                <button type="submit" name='delete-slider' value="<?php echo $value['id']?>" class="btn btn-danger" onclick="return confirm('are you sure delete')"><i class="glyphicon glyphicon-trash"></i> Delete</button> </form>
+                <a href="<?php echo$server_root?>admin/home/edit-slider/<?php echo $value['id']?>"><button class="btn btn-success btn-md"><i class="glyphicon glyphicon-edit"></i> Edit
                 </button></a>
               </td>
-              <td><img src="<?=$server_root?>admin/static/images/sliderImage/<?=$value['image']?>" width="100" ></td>
+              <td><img src="<?php echo$server_root?>admin/static/images/sliderImage/<?php echo$value['image']?>" width="100" ></td>
             </tr>
       <?php } ?>
   </table>

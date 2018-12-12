@@ -25,14 +25,14 @@
 <?php 
     foreach ($all_post as $key => $value) { ?>
      <tr>
-      <td><?=$key+1?></td>
-      <td><?= $value['title']; ?></td>
-      <td><?= $value['content']; ?></td>
-      <td><?= $value['seo_title']; ?></td>
-      <td><?= $value['meta_title']; ?></td>
-      <td><?= $value['meta_keyword']; ?></td>
+      <td><?php echo$key+1?></td>
+      <td><?php echo $value['title']; ?></td>
+      <td><?php echo $value['content']; ?></td>
+      <td><?php echo $value['seo_title']; ?></td>
+      <td><?php echo $value['meta_title']; ?></td>
+      <td><?php echo $value['meta_keyword']; ?></td>
       <td>
-          <a href="<?=$server_root?>user/read-more/<?= $value['id']?>"><button class="btn btn-primary btn-md"><i class="glyphicon glyphicon-eye-open"></i>
+          <a href="<?php echo$server_root?>user/read-more/<?php echo $value['id']?>"><button class="btn btn-primary btn-md"><i class="glyphicon glyphicon-eye-open"></i>
              View Post
           </button></a>
       </td>
@@ -47,19 +47,19 @@
   <div class="page_display">
     <div class="pagination">
       <?php if($page > 1) { ?>
-        <a href="<?=$server_root?>user/view-all-post/page/<?= ($page-1) ?>">&laquo;</a>
+        <a href="<?php echo$server_root?>user/view-all-post/page/<?php echo ($page-1) ?>">&laquo;</a>
       <?php } ?>
       <?php 
         $display_page = ceil($row/$limit);
         for($i=1;$i<=$display_page;$i++){?>
-      <a href="<?=$server_root?>user/view-all-post/page/<?=$i?>"
+      <a href="<?php echo$server_root?>user/view-all-post/page/<?php echo$i?>"
         <?php
           if($page == $i ){?>
           class="active" 
         <?php } ?>
-        ><?=$i?></a>
+        ><?php echo$i?></a>
       <?php } if($page < $display_page) { ?>
-      <a href="<?=$server_root?>user/view-all-post/page/<?= ($page+1)?>">&raquo;</a>
+      <a href="<?php echo$server_root?>user/view-all-post/page/<?php echo ($page+1)?>">&raquo;</a>
       <?php }?>
     </div>
   </div>

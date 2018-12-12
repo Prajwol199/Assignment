@@ -28,7 +28,7 @@ if(isset($_POST['edit-admin'])){
 							<input type="Password" name="npassword" id="npass" class="form-control">
 						</div>
 						<div class="form-group">
-		          			<button class="btn btn-primary btn pull-right btn-md" name="edit-admin" value="<?=$id?>">Change</button>
+		          			<button class="btn btn-primary btn pull-right btn-md" name="edit-admin" value="<?php echo$id?>">Change</button>
 		        		</div>
 	        		</form>
 				</div>			

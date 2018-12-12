@@ -1,12 +1,12 @@
 <div class="col-md-12 footer" style="height: 40px;">
-  <p align="center" class="copy"><b><?= $footer ?><b></p>
+  <p align="center" class="copy"><b><?php echo $footer ?><b></p>
 </div>
-<script type="text/javascript" src="<?=$server_root?>admin/static/ckeditor/ckeditor.js"></script>
-<!-- <script type="text/javascript" src="<?=$server_root?>admin/static/js/script.js"></script> -->
-<script type="text/javascript" src="<?=$server_root?>admin/static/js/script.min.js"></script>
-<script type="text/javascript" src="<?=$server_root?>admin/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="<?=$server_root?>admin/static/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<?=$server_root?>admin/static/lightbox/lightbox-plus-jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo$server_root?>admin/static/ckeditor/ckeditor.js"></script>
+<!-- <script type="text/javascript" src="<?php echo$server_root?>admin/static/js/script.js"></script> -->
+<script type="text/javascript" src="<?php echo$server_root?>admin/static/js/script.min.js"></script>
+<script type="text/javascript" src="<?php echo$server_root?>admin/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo$server_root?>admin/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo$server_root?>admin/static/lightbox/lightbox-plus-jquery.min.js"></script>
 
  <script type="text/javascript">
   var slug = function(str) {

@@ -17,7 +17,7 @@ if(isset($_POST['add'])) {
               <option value="-1">Parent Page</option>
               <option value="-2">Footer Page</option>
               <?php foreach ($select_page as $key => $value) { ?>
-                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
               <?php }?>
             </select>
           </div>

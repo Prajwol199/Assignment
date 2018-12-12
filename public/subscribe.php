@@ -9,7 +9,7 @@ if(isset($_POST['suscribe'])){
   <div class="col-md-3"><br>
     <?php
     if(isset($message)){?>
-        <div class="alert alert-danger" id="error" style="color:red;"><?= $message ?></div>
+        <div class="alert alert-danger" id="error" style="color:red;"><?php echo $message ?></div>
     <?php } ?>
     <div class="error" id="error" style="color:red;"></div>
     <form method="post" name="pageForm">

@@ -18,14 +18,14 @@ if(isset($_POST['edit-slider'])){
       <form method="post" enctype="multipart/form-data" name="pageForm" >
          <div class="form-group">
             <label for="uname"> Title</label>
-            <input type="text" name="title" id="name" class="form-control" value="<?=$title?>" required>
+            <input type="text" name="title" id="name" class="form-control" value="<?php echo$title?>" required>
          </div>
          <div class="form-group">
             <label> Description</label><br>
-            <textarea name="description" rows="6" cols="50" class="form-control" required><?=$content?></textarea>
+            <textarea name="description" rows="6" cols="50" class="form-control" required><?php echo$content?></textarea>
          </div>
          <div class="form-group">
-           <img src="<?= $server_root ?>/admin/static/images/sliderImage/<?= $value['image'] ?>" width="300"><br>
+           <img src="<?php echo $server_root ?>/admin/static/images/sliderImage/<?php echo $value['image'] ?>" width="300"><br>
             <label> Change Image</label><br>
             <input type="file" name="file" class="form-control">
          </div>

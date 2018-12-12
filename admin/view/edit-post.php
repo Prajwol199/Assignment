@@ -21,28 +21,28 @@
 	    <form method="post" enctype="multipart/form-data">
 	    	<div class="form-group" >
 	    		<label>Title </label>
-				<input type="text" name="title" class="form-control" value="<?=$title?>" required>
+				<input type="text" name="title" class="form-control" value="<?php echo$title?>" required>
 			</div>
 
 			<div class="form-group">
 				<label>Content </label>
-				<textarea name="content" rows="6" cols="50" class="form-control" required><?=$content?></textarea>
+				<textarea name="content" rows="6" cols="50" class="form-control" required><?php echo$content?></textarea>
 
 			</div>
 
 			<div class="form-group">
 				<label>Seo Title</label>
-				<input type="text" name="seo-title" class="form-control" value="<?=$seo_title?>" required>
+				<input type="text" name="seo-title" class="form-control" value="<?php echo$seo_title?>" required>
 			</div>
 
 			<div class="form-group">
 				<label>Meta Title</label>
-				<input type="text" name="meta-title" class="form-control" value="<?=$meta_title?>" required>
+				<input type="text" name="meta-title" class="form-control" value="<?php echo$meta_title?>" required>
 			</div>
 
 			<div class="form-group">
 				<label>Meta Keyword</label>
-				<input type="text" name="meta-keyword" class="form-control" value="<?=$meta_keyword?>" required>
+				<input type="text" name="meta-keyword" class="form-control" value="<?php echo$meta_keyword?>" required>
 			</div>
 			<div class="form-group">
 	          <button class="btn btn-success btn pull-right btn-lg" name="post_edit">Update</button>

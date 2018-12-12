@@ -26,27 +26,27 @@ foreach ($data as $key => $value) {
 	    			<form method="post" name="form" enctype="multipart/form-data" onclick="return siteValidation()">
 						<div class="form-group">
 							<label for="name"> Site Name </label>
-							<input type="text" name="name" id="name" class="form-control" value="<?= $name?>">
+							<input type="text" name="name" id="name" class="form-control" value="<?php echo $name?>">
 						</div>
 						<div class="form-group">
 							<label for="url"> Site URL </label>
-							<input type="text" name="url" id="url" class="form-control" value="<?= $url ?>">
+							<input type="text" name="url" id="url" class="form-control" value="<?php echo $url ?>">
 						</div>
 						<div class="form-group">
 							<label for="footer"> Footer </label>
-							<input type="text" name="footer" id="footer" class="form-control" value="<?= $footer ?>">
+							<input type="text" name="footer" id="footer" class="form-control" value="<?php echo $footer ?>">
 						</div>
 						<div class="form-group">
 							<label for="limit"> Page Limit </label>
-							<input type="text" name="limit" id="limit" class="form-control" value="<?= $limit ?>">
+							<input type="text" name="limit" id="limit" class="form-control" value="<?php echo $limit ?>">
 						</div>
 						<div class="form-group">
-							<img src="<?= $server_root ?>/admin/static/images/<?= $logo ?>" width="100"><br>
+							<img src="<?php echo $server_root ?>/admin/static/images/<?php echo $logo ?>" width="100"><br>
 							<label for="logo">Change Logo </label>
 							<input type="file" name="logo" id="logo" class="form-control">
 						</div>
 						<div class="form-group">
-		          			<button class="btn btn-primary btn pull-right btn-md" name="edit-site" value="<?=$id?>">Change</button>
+		          			<button class="btn btn-primary btn pull-right btn-md" name="edit-site" value="<?php echo$id?>">Change</button>
 		        		</div>
 	        		</form>
 				</div>			

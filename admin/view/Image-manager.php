@@ -15,7 +15,7 @@ $image = $dropdown->selectimage();
   <?php
      if (isset($_SESSION['success'])):?>
         <div class="alert alert-success">
-            <h1 align="center"><i class="glyphicon glyphicon-info-sign"></i> <?= $_SESSION['success']; ?></h1>
+            <h1 align="center"><i class="glyphicon glyphicon-info-sign"></i> <?php echo $_SESSION['success']; ?></h1>
         </div>
         <?php unset($_SESSION['success']) ?>
     <?php endif; ?> 
@@ -33,9 +33,9 @@ $image = $dropdown->selectimage();
 <div class="col-md-12"><h1 align="center"><b>Images in site</b></h1></div>
 	<?php foreach ($image as $key => $value) {?>
 		<div class="col-md-4 navbar  navbar-default" style="padding:30px;">
-			 <a class="example-image-link" href="<?= $server_root ?>/admin/static/images/pageImage/<?= $value['image'] ?>" data-lightbox="gallery"><img src="<?= $server_root ?>/admin/static/images/pageImage/<?= $value['image'] ?>" width="300" height="250" style="padding: 10px;"><br></a>
+			 <a class="example-image-link" href="<?php echo $server_root ?>/admin/static/images/pageImage/<?php echo $value['image'] ?>" data-lightbox="gallery"><img src="<?php echo $server_root ?>/admin/static/images/pageImage/<?php echo $value['image'] ?>" width="300" height="250" style="padding: 10px;"><br></a>
 			<form method="post" >
-				<a onclick="return confirm('are you sure delete')"><button class="btn btn-danger" name="delete-image" value="<?= $value['id']?>">
+				<a onclick="return confirm('are you sure delete')"><button class="btn btn-danger" name="delete-image" value="<?php echo $value['id']?>">
 					 <i class="glyphicon glyphicon-trash"></i> Delete
 				</button></a>
 			</form>

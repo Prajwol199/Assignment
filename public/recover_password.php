@@ -13,8 +13,8 @@ if(isset($_POST['recoverPassword'])){
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="<?=$server_root?>admin/static/css/syle.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo$server_root?>admin/static/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo$server_root?>admin/static/css/syle.css">
 
 </head>
 <boby >
@@ -34,7 +34,7 @@ if(isset($_POST['recoverPassword'])){
         	</div>
     </div>
 </div>
-<script type="text/javascript" src="<?=$server_root?>admin/static/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="<?=$server_root?>admin/static/js/script.js"></script>
+<script type="text/javascript" src="<?php echo$server_root?>admin/static/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo$server_root?>admin/static/js/script.js"></script>
 </body>
 </html>

@@ -13,20 +13,20 @@ $image = $select_page->select_image_post();
 
 ?>
 <div class="col-md-12">
-	<h1 align="center"><b><?= $title ?></b></h1>
+	<h1 align="center"><b><?php echo $title ?></b></h1>
 
 	<div class="description">
-		<p align="center"><?= $content ?></p>
+		<p align="center"><?php echo $content ?></p>
 	</div>
-	<h2 align="center"><?=$seo_title?></h2>
-	<h2 align="center"><?=$meta_title?></h2>
-	<h2 align="center"><?=$meta_keyword?></h2>
+	<h2 align="center"><?php echo$seo_title?></h2>
+	<h2 align="center"><?php echo$meta_title?></h2>
+	<h2 align="center"><?php echo$meta_keyword?></h2>
 </div>
 
 <?php if(count($image)>0) {?>
 	<?php foreach ($image as $key => $value) {?>
 		<div class="col-md-4" style="padding:30px;">
-			<a href="<?= $server_root ?>admin/static/images/pageImage/<?= $value['image'] ?>" data-lightbox="gallery"><img src="<?= $server_root ?>admin/static/images/cropImage/<?= $value['crop'] ?>" width="300" height="250" style="padding: 10px;"><br></a>
+			<a href="<?php echo $server_root ?>admin/static/images/pageImage/<?php echo $value['image'] ?>" data-lightbox="gallery"><img src="<?php echo $server_root ?>admin/static/images/cropImage/<?php echo $value['crop'] ?>" width="300" height="250" style="padding: 10px;"><br></a>
 		</div>
 	<?php } ?>
 <?php }else{ ?>

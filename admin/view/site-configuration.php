@@ -17,13 +17,13 @@ $site_data = $siteConfig->select_site();
                 <th>Action</th>
         	  </tr>
         	  <?php foreach ($site_data as $key => $value) { ?>
-         		<td><img src="<?= $server_root ?>/admin/static/images/logo.jpg" width=100></td>
-        		<td><?= $value['site_name']?></td>
-                <td><?= $value['server_root']?></td>
-                <td><?= $value['footer']?></td>
-                <td><?= $value['page_limit']?></td>            
+         		<td><img src="<?php echo $server_root ?>/admin/static/images/logo.jpg" width=100></td>
+        		<td><?php echo $value['site_name']?></td>
+                <td><?php echo $value['server_root']?></td>
+                <td><?php echo $value['footer']?></td>
+                <td><?php echo $value['page_limit']?></td>            
         		<td>
-        			<a href="edit-site-configuration/<?= $value['id']?>">
+        			<a href="edit-site-configuration/<?php echo $value['id']?>">
                         <button class="btn btn-success btn-md">
                             Edit
                 		</button>

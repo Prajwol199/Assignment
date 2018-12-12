@@ -47,7 +47,7 @@ if(isset($_POST['quote'])){
           <select name="country" id="country" class="form-control">
             <option>Select Country</option>
             <?php foreach ($country_select as $key => $value) {?>
-            <option value="<?=$value['country_id']?>"><?= $value['country_name'] ?></option>
+            <option value="<?php echo$value['country_id']?>"><?php echo $value['country_name'] ?></option>
             <?php } ?>
           </select>
         </div>

@@ -31,7 +31,7 @@
       <?php endif; ?>
     </div>
     <div class="col-md-6">
-       <a style="color:white;" href="<?=$server_root?>admin/home/add-post"><button class="btn btn-warning btn btn-lg btn pull-right"><i class="glyphicon glyphicon-plus"></i> Add New Post
+       <a style="color:white;" href="<?php echo$server_root?>admin/home/add-post"><button class="btn btn-warning btn btn-lg btn pull-right"><i class="glyphicon glyphicon-plus"></i> Add New Post
       </button></a>
     </div>
   </div>
@@ -53,35 +53,35 @@
   <?php 
       foreach ($all_post as $key => $value) { ?>
        <tr>
-        <td><?=$key+1?></td>
-        <td><?= $value['title']; ?></td>
-        <td><?= $value['content']; ?></td>
-        <td><?= $value['seo_title']; ?></td>
-        <td><?= $value['meta_title']; ?></td>
-        <td><?= $value['meta_keyword']; ?></td>
-        <td><?= $value['date']; ?></td>
+        <td><?php echo$key+1?></td>
+        <td><?php echo $value['title']; ?></td>
+        <td><?php echo $value['content']; ?></td>
+        <td><?php echo $value['seo_title']; ?></td>
+        <td><?php echo $value['meta_title']; ?></td>
+        <td><?php echo $value['meta_keyword']; ?></td>
+        <td><?php echo $value['date']; ?></td>
         <td>
         	<?php 
         	$val = $value['isactive'];
         	if($val == 1){?>
         		<form method="post">
-        		<button type="submit" name='deactive' value="<?= $value['id']?>" class="btn btn-danger">DeActive</button>
+        		<button type="submit" name='deactive' value="<?php echo $value['id']?>" class="btn btn-danger">DeActive</button>
         		</form>
         	<?php }else{?>
         		<form method="post">
-        		<button type="submit" name='active' value="<?= $value['id']?>" class="btn btn-primary">Active</button>
+        		<button type="submit" name='active' value="<?php echo $value['id']?>" class="btn btn-primary">Active</button>
         		</form>
         	<?php }	?>
         	
         </td>
         <td>
         	<form method="post">
-              <button type="submit" name='delete-post' value="<?= $value['id']?>" class="btn btn-danger" onclick="return confirm('are you sure delete')"><i class="glyphicon glyphicon-trash"></i> Delete</button> </form>
-              <a href="<?=$server_root?>admin/home/edit-post/<?= $value['id']?>"><button class="btn btn-success btn-md"><i class="glyphicon glyphicon-edit"></i> Edit
+              <button type="submit" name='delete-post' value="<?php echo $value['id']?>" class="btn btn-danger" onclick="return confirm('are you sure delete')"><i class="glyphicon glyphicon-trash"></i> Delete</button> </form>
+              <a href="<?php echo$server_root?>admin/home/edit-post/<?php echo $value['id']?>"><button class="btn btn-success btn-md"><i class="glyphicon glyphicon-edit"></i> Edit
               </button></a>
         </td>
         <td>
-        	 <a href="<?=$server_root?>admin/home/view-post-image/<?= $value['id']?>"><button class="btn btn-primary btn-md"><i class="glyphicon glyphicon-eye-open"></i>
+        	 <a href="<?php echo$server_root?>admin/home/view-post-image/<?php echo $value['id']?>"><button class="btn btn-primary btn-md"><i class="glyphicon glyphicon-eye-open"></i>
                View Image
             </button></a>
         </td>
@@ -96,19 +96,19 @@
   <div class="page_display">
     <div class="pagination">
       <?php if($page > 1) { ?>
-        <a href="<?=$server_root?>admin/home/post-manager/<?= ($page-1) ?>">&laquo;</a>
+        <a href="<?php echo$server_root?>admin/home/post-manager/<?php echo ($page-1) ?>">&laquo;</a>
       <?php } ?>
       <?php 
         $display_page = ceil($row/$limit);
         for($i=1;$i<=$display_page;$i++){?>
-      <a href="<?=$server_root?>admin/home/post-manager/<?=$i?>"
+      <a href="<?php echo$server_root?>admin/home/post-manager/<?php echo$i?>"
         <?php
           if($page == $i ){?>
           class="active" 
         <?php } ?>
-        ><?=$i?></a>
+        ><?php echo$i?></a>
       <?php } if($page < $display_page) { ?>
-      <a href="<?=$server_root?>admin/home/post-manager/<?= ($page+1)?>">&raquo;</a>
+      <a href="<?php echo$server_root?>admin/home/post-manager/<?php echo ($page+1)?>">&raquo;</a>
       <?php }?>
     </div>
   </div>

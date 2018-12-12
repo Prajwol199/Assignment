@@ -27,7 +27,7 @@ if(isset($_POST['delete-page'])){
       <?php endif; ?>
     </div>
     <div class="col-md-6">
-       <a style="color:white;" href="<?=$server_root?>admin/home/add-page"><button class="btn btn-warning btn btn-lg btn pull-right"><i class="glyphicon glyphicon-plus"></i> Add New Page
+       <a style="color:white;" href="<?php echo$server_root?>admin/home/add-page"><button class="btn btn-warning btn btn-lg btn pull-right"><i class="glyphicon glyphicon-plus"></i> Add New Page
       </button></a>
     </div>
   </div>
@@ -44,18 +44,18 @@ if(isset($_POST['delete-page'])){
     <?php 
           foreach ($field as $key => $value) { ?>
             <tr>
-            <td><?=$key+1?></td>
-            <td><?= $value['name']; ?></td>
-            <td><?= $value['description']; ?></td>
-            <td><?= $value['parent_id'] ?></td>
+            <td><?php echo$key+1?></td>
+            <td><?php echo $value['name']; ?></td>
+            <td><?php echo $value['description']; ?></td>
+            <td><?php echo $value['parent_id'] ?></td>
             <td>
               <form method="post">
-              <button type="submit" name='delete-page' value="<?= $value['id']?>" class="btn btn-danger" onclick="return confirm('are you sure delete')"><i class="glyphicon glyphicon-trash"></i> Delete</button> </form>
-              <a href="<?=$server_root?>admin/home/edit/<?= $value['id']?>"><button class="btn btn-success btn-md"><i class="glyphicon glyphicon-edit"></i> Edit
+              <button type="submit" name='delete-page' value="<?php echo $value['id']?>" class="btn btn-danger" onclick="return confirm('are you sure delete')"><i class="glyphicon glyphicon-trash"></i> Delete</button> </form>
+              <a href="<?php echo$server_root?>admin/home/edit/<?php echo $value['id']?>"><button class="btn btn-success btn-md"><i class="glyphicon glyphicon-edit"></i> Edit
               </button></a>
             </td>
             <td>
-              <a href="<?=$server_root?>admin/home/view-image/<?= $value['id']?>"><button class="btn btn-primary btn-md"><i class="glyphicon glyphicon-eye-open"></i>
+              <a href="<?php echo$server_root?>admin/home/view-image/<?php echo $value['id']?>"><button class="btn btn-primary btn-md"><i class="glyphicon glyphicon-eye-open"></i>
                View Image
             </button></a>
             </td>
@@ -72,19 +72,19 @@ if(isset($_POST['delete-page'])){
   <div class="page_display">
     <div class="pagination">
       <?php if($page > 1) { ?>
-        <a href="<?=$server_root?>admin/home/page-manager/<?= ($page-1) ?>">&laquo;</a>
+        <a href="<?php echo$server_root?>admin/home/page-manager/<?php echo ($page-1) ?>">&laquo;</a>
       <?php } ?>
       <?php 
         $display_page = ceil($row/$limit);
         for($i=1;$i<=$display_page;$i++){?>
-      <a href="<?=$server_root?>admin/home/page-manager/<?=$i?>"
+      <a href="<?php echo$server_root?>admin/home/page-manager/<?php echo$i?>"
         <?php
           if($page == $i ){?>
           class="active" 
         <?php } ?>
-        ><?=$i?></a>
+        ><?php echo$i?></a>
       <?php } if($page < $display_page) { ?>
-      <a href="<?=$server_root?>admin/home/page-manager/<?= ($page+1)?>">&raquo;</a>
+      <a href="<?php echo$server_root?>admin/home/page-manager/<?php echo ($page+1)?>">&raquo;</a>
       <?php }?>
     </div>
   </div>

@@ -27,12 +27,12 @@ if(isset($_POST['export'])){
       		<?php 
             foreach ($all_subscriber as $key => $value) { ?>
               <tr>
-                <td><?=$key+1?></td>
-                <td><?= $value['email']; ?></td>
-                <td><?=$value['date']?></td>
+                <td><?php echo$key+1?></td>
+                <td><?php echo $value['email']; ?></td>
+                <td><?php echo$value['date']?></td>
                 <td>
                 <form method="post">
-                  <button type="submit" name='delete-subscriber' value="<?=$value['id']?>" class="btn btn-danger" onclick="return confirm('are you sure delete')"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                  <button type="submit" name='delete-subscriber' value="<?php echo$value['id']?>" class="btn btn-danger" onclick="return confirm('are you sure delete')"><i class="glyphicon glyphicon-trash"></i> Delete</button>
                 </form>
                 </td>
               </tr>

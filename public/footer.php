@@ -6,7 +6,7 @@
 	<u><h2 align="center">Pages</h2></u>
 	<div align="center" class="page">
 	<?php foreach ($select_page as $key => $value) { ?>		
-			<a href="<?=$server_root?>user/display-page/<?=$value['slug']?>/<?=$value['id']?>" style="color: white;"><?= $value['name'] ?></a>&nbsp &nbsp &nbsp		
+			<a href="<?php echo$server_root?>user/display-page/<?php echo$value['slug']?>/<?php echo$value['id']?>" style="color: white;"><?php echo $value['name'] ?></a>&nbsp &nbsp &nbsp		
 	<?php } ?><br>
 	<br>
 	<p align="center"><a href=""><i class="fa fa-facebook-square" style="font-size:36px;"></i></a>
@@ -14,7 +14,7 @@
 					<a href=""><i class="fa fa-youtube-play" style="font-size:36px;"></i></a>
 					<a href=""><i class="fa fa-linkedin-square" style="font-size:36px;"></i></a>
 	</p>
-	<p align="center" class="copy"><b><?= $footer ?><b></p>
+	<p align="center" class="copy"><b><?php echo $footer ?><b></p>
 </div>
 
 <!-------------------- top button ---------------------->
@@ -69,10 +69,10 @@ function topFunction() {
 	showTime();
 </script>
 <!-------------------- Digital clock ---------------------->
-<script type="text/javascript" src="<?=$server_root?>admin/static/ckeditor/ckeditor.js"></script>
-<!-- <script type="text/javascript" src="<?=$server_root?>admin/static/js/script.js"></script> -->
-<script type="text/javascript" src="<?=$server_root?>admin/static/js/script.min.js"></script>
-<script type="text/javascript" src="<?=$server_root?>admin/static/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<?=$server_root?>admin/static/lightbox/lightbox-plus-jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo$server_root?>admin/static/ckeditor/ckeditor.js"></script>
+<!-- <script type="text/javascript" src="<?php echo$server_root?>admin/static/js/script.js"></script> -->
+<script type="text/javascript" src="<?php echo$server_root?>admin/static/js/script.min.js"></script>
+<script type="text/javascript" src="<?php echo$server_root?>admin/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo$server_root?>admin/static/lightbox/lightbox-plus-jquery.min.js"></script>
 </body>
 </html>
