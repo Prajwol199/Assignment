@@ -3,10 +3,10 @@ require_once __dir__.'/DatabaseController.php';
 require_once __dir__.'/setting.php';
 
 class PageController extends DatabaseController{
-	protected $tableName = 'pages';
-	protected $table = 'users';
-	protected $table_image='image';
-	protected $table_meta='meta';
+	protected $tableName   = 'pages';
+	protected $table       = 'users';
+	protected $table_image = 'image';
+	protected $table_meta  = 'meta';
 
 	public function __construct()
     {
@@ -22,9 +22,9 @@ class PageController extends DatabaseController{
 
     public function AddPage(){
     	global $server_root;
-    	$name = $_POST['name'];
+    	$name      = $_POST['name'];
     	$parent_id = $_POST['page'];
-    	$slug = $_POST['slug'];
+    	$slug      = $_POST['slug'];
 
     	$data = array(
     		'*'
@@ -37,8 +37,8 @@ class PageController extends DatabaseController{
     	);
     	$select_name = $this->name_check($data,$criteria);
     	$select_slug = $this->name_check($data,$condition);
-    	$db_slug = $this->fetch($select_slug);
-    	$db_name = $this->fetch($select_name);
+    	$db_slug     = $this->fetch($select_slug);
+    	$db_name     = $this->fetch($select_name);
     	$a= count($db_slug);
     	if($a > 0){
     		$newSlug = $slug.'-'.$a;
@@ -54,14 +54,13 @@ class PageController extends DatabaseController{
 			if(empty($_POST['name']) || empty($_POST['des'])){
 				echo "Page name and Description cannot be empty";
 			}else{
-				$pageName = $_POST['name'];
+				$pageName    = $_POST['name'];
 				$description = $_POST['des'];
-				$file=$_FILES['file'];
-
-				$ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-	 			$name = md5(time() . rand());
-	 			$newName =$name.'.'.$ext;
-	 			$tmpName = $file['tmp_name'];
+				$file        = $_FILES['file'];
+				$ext         = pathinfo($file['name'], PATHINFO_EXTENSION);
+	 			$name        = md5(time() . rand());
+	 			$newName     = $name.'.'.$ext;
+	 			$tmpName     = $file['tmp_name'];
 
 
 	 			$imagePath='../admin/static/images/pageImage/';
@@ -97,8 +96,8 @@ class PageController extends DatabaseController{
 
 				if(!empty($newName)){					
 	 				$data=array(
-	 					'image'=>"$newName",
-	 					'crop'=>"$cropName"
+	 					'image' => "$newName",
+	 					'crop'  => "$cropName"
 	 				);
 	 				$this->imagesInsert($data);
 	 				$data=array(
@@ -111,10 +110,10 @@ class PageController extends DatabaseController{
 	 				}
 
 	 				$page_field=array(
-	 					'name'=>"$pageName",
-	 					'description'=>"$description",
-	 					'parent_id'=>"$parent_id",
-	 					'slug'=>"$newSlug"
+	 					'name'        => "$pageName",
+	 					'description' => "$description",
+	 					'parent_id'   => "$parent_id",
+	 					'slug'        => "$newSlug"
 	 				);
 	 				$save = $this->save($page_field);
 
@@ -122,15 +121,15 @@ class PageController extends DatabaseController{
 	 				$page_id=array(
 	 					'id'
 	 				);
-	 				$id_page = $this->pageId($page_id,$pageName,$description);
+	 				$id_page    = $this->pageId($page_id,$pageName,$description);
 	 				$value_page = mysqli_fetch_assoc($id_page);
 	 				foreach ($value_page as $key => $id_page) {
 	 					$id_page;
 	 				}
 	 				$meta=array(
-	 					'page_type'=>'page',
-	 					'page_id'=>"$id_page",
-	 					'image_id'=>"$image_id"
+	 					'page_type' => 'page',
+	 					'page_id'   => "$id_page",
+	 					'image_id'  => "$image_id"
 	 				);
 	 				$meta_result = $this->meta_save($meta);
 	 				if($meta_result == true){
@@ -153,9 +152,9 @@ class PageController extends DatabaseController{
 		$delete = $this->delete($data);
 
 		if($delete == true){
-			$delete_meta = $this->delete_meta($id);
+			$delete_meta     = $this->delete_meta($id);
 			$_SESSION['msg'] = "page deleted";
-			$redirect_path = $server_root.'admin/home/page-manager';				
+			$redirect_path   = $server_root.'admin/home/page-manager';				
 			header("Location:$redirect_path");
 		}
 	}
@@ -165,7 +164,7 @@ class PageController extends DatabaseController{
 			'*'
 		);
 		$field = $this->editUser($data,array('id'=>"$id"));
-		$rows = $this->fetch($field);
+		$rows  = $this->fetch($field);
 		return $rows;
 	}
 
@@ -176,14 +175,14 @@ class PageController extends DatabaseController{
 			if(empty($_POST['name']) || empty($_POST['des'])){
 				echo "Page name and Description cannot be empty";
 			}else{
-				$data['name'] = $_POST['name'];			
+				$data['name']        = $_POST['name'];			
 				$data['description'] = $_POST['des'];
 
 				$update = $this->updatePage($data,array('id'=>"$id"));
 
 				if($update == true){
 					$_SESSION['msg'] = "page edited";
-					$redirect_path = $server_root.'admin/home/page-manager';				
+					$redirect_path   = $server_root.'admin/home/page-manager';				
 					header("Location:$redirect_path");
 				}
 			}
@@ -199,7 +198,7 @@ class PageController extends DatabaseController{
 			'parent_id'=>"-1"
 		);
 		$result = $this->dropdown_page($data,$criteria);
-		$pages = $this->fetch($result);
+		$pages  = $this->fetch($result);
 		return $pages;
 	}	
 }

@@ -23,14 +23,14 @@ class ContactUsController extends Database{
 	public function contact_us(){
 		global $server_root;
 		$select_email = $this->select($this->table_user,array('email'));
-		$email_admin = $this->fetch($select_email);
+		$email_admin  = $this->fetch($select_email);
 		foreach ($email_admin as $key => $value) {
 			$admin_email = $value['email'];
 		}
 		if($_POST['robotest']){
       	echo "You are a gutless robot.";
         }else{
-	        $name = $_POST['name'];
+	        $name  = $_POST['name'];
 			$email = $_POST['email'];
 			if(!empty($_POST['phone'])){
 				$phone = $_POST['phone'];

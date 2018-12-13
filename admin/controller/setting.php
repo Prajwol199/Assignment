@@ -16,7 +16,7 @@
 	}
 	foreach ($rows as $key => $value) {
 		$server_root = $value['server_root'];
-		$site_name = $value['site_name'];
-		$footer = $value['footer'];
-		$limit = $value['page_limit'];
+		$site_name   = $value['site_name'];
+		$footer      = $value['footer'];
+		$limit       = $value['page_limit'];
 	}

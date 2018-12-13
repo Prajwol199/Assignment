@@ -3,9 +3,9 @@ require_once __dir__.'/../model/database.php';
 require_once __dir__.'/setting.php';
 
 class PostController extends Database{
-	protected $table_post = 'post';
+	protected $table_post  = 'post';
 	protected $table_image = 'image';
-	protected $table_meta = 'meta';
+	protected $table_meta  = 'meta';
 	public function fetch($data){
     	$rows=[];
 		while($row=mysqli_fetch_assoc($data)){
@@ -16,27 +16,27 @@ class PostController extends Database{
 
 	public function add_post(){
 		global $server_root;
-		$title = $_POST['title'];
-		$content = $_POST['content'];
-		$seo_title = $_POST['seo-title'];
-		$meta_title = $_POST['meta-title'];
+		$title        = $_POST['title'];
+		$content      = $_POST['content'];
+		$seo_title    = $_POST['seo-title'];
+		$meta_title   = $_POST['meta-title'];
 		$meta_keyword = $_POST['meta-keyword'];
 
 		if(!empty($title) && !empty($content) && !empty($seo_title) && !empty($meta_keyword)){
 			$data = array(
-				'title'=>"$title",
-				'content'=>"$content",	
-				'seo_title'=>"$seo_title",
-				'meta_title'=>"$meta_title",
-				'meta_keyword'=>"$meta_keyword",
-				'isactive'=>"1"
+				'title'        => "$title",
+				'content'      => "$content",	
+				'seo_title'    => "$seo_title",
+				'meta_title'   => "$meta_title",
+				'meta_keyword' => "$meta_keyword",
+				'isactive'     => "1"
 			);
 			if($this->insert($this->table_post,$data)){
 				$condition = array(
-					'title'=>"$title",
-					'seo_title'=>"$seo_title",
-					'meta_title'=>"$meta_title",
-					'meta_keyword'=>"$meta_keyword"
+					'title'        => "$title",
+					'seo_title'    => "$seo_title",
+					'meta_title'   => "$meta_title",
+					'meta_keyword' => "$meta_keyword"
 				);
 				$select_id = $this->select($this->table_post,array('id'),$condition);
 				$fetch_id = $this->fetch($select_id);
@@ -45,14 +45,14 @@ class PostController extends Database{
 				}
 			}
 
-			$imagePath='../admin/static/images/pageImage/';
-		 	$cropimagePath='../admin/static/images/cropImage/';
+			$imagePath     = '../admin/static/images/pageImage/';
+		 	$cropimagePath = '../admin/static/images/cropImage/';
 			for($i = 0; $i < count($_FILES['uploadfile']['name']); $i++){
-				$filetmp = $_FILES["uploadfile"]["tmp_name"][$i];
-				$filename = $_FILES["uploadfile"]["name"][$i];
-				$ext = pathinfo($filename, PATHINFO_EXTENSION);
-				$name = md5(time() . rand());
-	 			$newName = $name.'.'.$ext; echo "<br>";
+				$filetmp   = $_FILES["uploadfile"]["tmp_name"][$i];
+				$filename  = $_FILES["uploadfile"]["name"][$i];
+				$ext       = pathinfo($filename, PATHINFO_EXTENSION);
+				$name      = md5(time() . rand());
+	 			$newName   = $name.'.'.$ext; echo "<br>";
 				if(!move_uploaded_file($filetmp,$imagePath.$newName)){
 					echo "Not moved";
 				}
@@ -70,8 +70,8 @@ class PostController extends Database{
 	 			}else if ($ext == 'jpg'){
 					$cropName = $name.'-thumbnail.'.$ext;
 	 				$im = imagecreatefromjpeg($imagePath.$newName);
-	 				$sizeH='250';
-	 				$sizeW='250';
+	 				$sizeH = '250';
+	 				$sizeW = '250';
 					$im2 = imagecrop($im, ['x' => 150, 'y' => 150, 'width' => $sizeW, 'height' => $sizeH]);
 					if ($im2 !== FALSE) {							
 					    $img = imagejpeg($im2, $cropimagePath.$cropName);
@@ -83,8 +83,8 @@ class PostController extends Database{
 
 	 			if(!empty($newName)){				
 					$data=array(
-						'image'=>"$newName",
-						'crop'=>"$cropName"
+						'image' => "$newName",
+						'crop'  => "$cropName"
 					);
 					if($this->insert($this->table_image,$data)){
 						$select_image_id = $this->select($this->table_image,array('id'),array('image'=>"$newName"));
@@ -94,9 +94,9 @@ class PostController extends Database{
 		 				}
 					}
 					$meta=array(
-		 					'page_type'=>'post',
-		 					'page_id'=>"$post_id",
-		 					'image_id'=>"$image_id"
+		 					'page_type' => 'post',
+		 					'page_id'   => "$post_id",
+		 					'image_id'  => "$image_id"
 		 				);
 					$insert = $this->insert($this->table_meta,$meta);
 				}
@@ -131,20 +131,20 @@ class PostController extends Database{
 
 	public function edit_post(){
 		global $server_root;
-		$id = $_GET['id'];
-		$title = $_POST['title'];
-		$content = $_POST['content'];
-		$seo_title = $_POST['seo-title'];
-		$meta_title = $_POST['meta-title'];
+		$id           = $_GET['id'];
+		$title        = $_POST['title'];
+		$content      = $_POST['content'];
+		$seo_title    = $_POST['seo-title'];
+		$meta_title   = $_POST['meta-title'];
 		$meta_keyword = $_POST['meta-keyword'];
 
 		if(!empty($title) && !empty($content) && !empty($seo_title) && !empty($meta_title) &&!empty($meta_keyword)){
 			$data = array(
-				'title'=>"$title",
-				'content'=>"$content",
-				'seo_title'=>"$seo_title",
-				'meta_title'=>"meta_title",
-				'meta_keyword'=>"$meta_keyword"
+				'title'        => "$title",
+				'content'      => "$content",
+				'seo_title'    => "$seo_title",
+				'meta_title'   => "meta_title",
+				'meta_keyword' => "$meta_keyword"
 			);
 			if($this->update($this->table_post,$data,array('id'=>"$id"))){
 				header('Location:'.$server_root.'admin/home/post-manager');
@@ -159,8 +159,8 @@ class PostController extends Database{
 			'image_id'
 		);
 		$criteria = array(
-			'page_id'=>"$id",
-			'page_type'=>'post'
+			'page_id'   => "$id",
+			'page_type' => 'post'
 		);
 		$result = $this->select($this->table_meta,$data,$criteria);
 		$rows = $this->fetch($result);
@@ -178,19 +178,19 @@ class PostController extends Database{
 	public function delete_view_post(){
 		global $server_root;
 		$page_id = $_GET['id'];
-		$id = $_POST['delete-image'];
+		$id      = $_POST['delete-image'];
 
 		$data=array(
-			'id'=>"$id"
+			'id' => "$id"
 			);
 		$field = array(
 			'image',
 			'crop'
 		);
-		$select = $this->select($this->table_image,$field,array('id'=>"$id"));
+		$select  = $this->select($this->table_image,$field,array('id'=>"$id"));
 		$imgName = $this->fetch($select);
 		foreach ($imgName as $key => $value) {
-			$name = $value['image'];
+			$name     = $value['image'];
 			$cropName = $value['crop'];
 		}
 
@@ -208,14 +208,14 @@ class PostController extends Database{
 		global $server_root;
 		$page_id = $_GET['id'];
 
-		$imagePath='../admin/static/images/pageImage/';
-	 	$cropimagePath='../admin/static/images/cropImage/';
+		$imagePath     = '../admin/static/images/pageImage/';
+	 	$cropimagePath = '../admin/static/images/cropImage/';
 		for($i = 0; $i < count($_FILES['uploadfile']['name']); $i++){
-			$filetmp = $_FILES["uploadfile"]["tmp_name"][$i];
+			$filetmp  = $_FILES["uploadfile"]["tmp_name"][$i];
 			$filename = $_FILES["uploadfile"]["name"][$i];
-			$ext = pathinfo($filename, PATHINFO_EXTENSION);
-			$name = md5(time() . rand());
- 			$newName = $name.'.'.$ext; echo "<br>";
+			$ext      = pathinfo($filename, PATHINFO_EXTENSION);
+			$name     = md5(time() . rand());
+ 			$newName  = $name.'.'.$ext; echo "<br>";
 			if(!move_uploaded_file($filetmp,$imagePath.$newName)){
 				echo "Not moved";
 			}
@@ -246,8 +246,8 @@ class PostController extends Database{
 
  			if(!empty($newName)){				
 				$data=array(
-					'image'=>"$newName",
-					'crop'=>"$cropName"
+					'image' => "$newName",
+					'crop'  => "$cropName"
 				);
 				if($this->insert($this->table_image,$data)){
 					$select_image_id = $this->select($this->table_image,array('id'),array('image'=>"$newName"));
@@ -257,9 +257,9 @@ class PostController extends Database{
 	 				}
 				}
 				$meta=array(
-	 					'page_type'=>'post',
-	 					'page_id'=>"$page_id",
-	 					'image_id'=>"$image_id"
+	 					'page_type' => 'post',
+	 					'page_id'   => "$page_id",
+	 					'image_id'  => "$image_id"
 	 				);
 				$insert = $this->insert($this->table_meta,$meta);
 			}
@@ -274,7 +274,7 @@ class PostController extends Database{
 
 	public function deactive_post(){
 		global $server_root;
-		$id = $_POST['deactive'];
+		$id   = $_POST['deactive'];
 		$data = array(
 			'isactive'=>'0'
 		);
@@ -288,7 +288,7 @@ class PostController extends Database{
 
 	public function active_post(){
 		global $server_root;
-		$id = $_POST['active'];
+		$id   = $_POST['active'];
 		$data = array(
 			'isactive'=>'1'
 		);

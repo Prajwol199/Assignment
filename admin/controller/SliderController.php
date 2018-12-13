@@ -16,21 +16,21 @@ class SliderController extends Database{
 
 	public function add_slider(){
 		global $server_root;
-		$title = $_POST['title'];
+		$title       = $_POST['title'];
 		$description = $_POST['description'];
 
 		$file=$_FILES['file'];
 
-		$ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-		$name = md5(time() . rand());
-		$newName =$name.'.'.$ext;
-		$tmpName = $file['tmp_name'];
-		$imagePath='../admin/static/images/sliderImage/';
+		$ext       = pathinfo($file['name'], PATHINFO_EXTENSION);
+		$name      = md5(time() . rand());
+		$newName   = $name.'.'.$ext;
+		$tmpName   = $file['tmp_name'];
+		$imagePath = '../admin/static/images/sliderImage/';
 		if(move_uploaded_file($tmpName,$imagePath. $newName)){
 			$data = array(
-				'title'=>"$title",
-				'description'=>"$description",
-				'image'=>"$newName"
+				'title'       => "$title",
+				'description' => "$description",
+				'image'       => "$newName"
 			);
 			if($this->insert($this->table_slider,$data)){
 				header('Location:'.$server_root.'admin/home/slider-manager');
@@ -42,7 +42,7 @@ class SliderController extends Database{
 
 	public function select_slider(){
 		$select_slider_db = $this->select($this->table_slider,array('*'));
-		$fetch_slider = $this->fetch($select_slider_db);
+		$fetch_slider     = $this->fetch($select_slider_db);
 		return $fetch_slider;
 	}
 
@@ -71,32 +71,32 @@ class SliderController extends Database{
 
 	public function edit_slider($id,$image){
 		global $server_root;
-		$title = $_POST['title'];
+		$title       = $_POST['title'];
 		$description = $_POST['description'];
 		if(!empty($_POST['title']) && !empty($_POST['description'])){
 
-			$file=$_FILES['file'];
-			$ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-			$name = md5(time() . rand());
-			$newName =$name.'.'.$ext;
-			$tmpName = $file['tmp_name'];
-			$imagePath='../admin/static/images/sliderImage/';
+			$file      = $_FILES['file'];
+			$ext       = pathinfo($file['name'], PATHINFO_EXTENSION);
+			$name      = md5(time() . rand());
+			$newName   = $name.'.'.$ext;
+			$tmpName   = $file['tmp_name'];
+			$imagePath = '../admin/static/images/sliderImage/';
 
 			if(!empty($ext)){
 				move_uploaded_file($tmpName,$imagePath. $newName);
 				unlink('../admin/static/images/sliderImage/' .$image);
 				$data = array(
-					'title'=>"$title",
-					'description'=>"$description",
-					'image'=>"$newName"
+					'title'       => "$title",
+					'description' => "$description",
+					'image'       => "$newName"
 				);
 				if($this->update($this->table_slider,$data,array('id'=>"$id"))) {
 					header('Location:'.$server_root.'admin/home/slider-manager');
 				}
 			}else{
 				$data =array(
-					'title'=>"$title",
-					'description'=>"$description"
+					'title'       => "$title",
+					'description' => "$description"
 				);
 				if($this->update($this->table_slider,$data,array('id'=>"$id"))) {
 				header('Location:'.$server_root.'admin/home/slider-manager');

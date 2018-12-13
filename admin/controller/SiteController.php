@@ -3,12 +3,12 @@ require_once __dir__.'/../model/database.php';
 require_once __dir__.'/setting.php';
 
 class SiteController extends Database{
-	protected $table='setting';
+	protected $table            = 'setting';
 	protected $table_subscriber = 'subscriber';
-	protected $table_page = 'pages';
-	protected $table_post = 'post';
-	protected $table_user = 'users';
-	protected $table_slider = 'slider';
+	protected $table_page       = 'pages';
+	protected $table_post       = 'post';
+	protected $table_user       = 'users';
+	protected $table_slider     = 'slider';
 
 	public function fetch($data){
     	$rows=[];
@@ -22,7 +22,7 @@ class SiteController extends Database{
 		$data = array(
 			'*'
 		);
-		$site_data = $this->select($this->table,$data);
+		$site_data  = $this->select($this->table,$data);
 		$fetch_data = $this->fetch($site_data);
 		return $fetch_data;
 	}
@@ -31,7 +31,7 @@ class SiteController extends Database{
 		$data = array(
 			'*'
 		);
-		$result = $this->select($this->table,$data);
+		$result       = $this->select($this->table,$data);
 		$fetch_result = $this->fetch($result);
 		return $fetch_result;
 	}
@@ -40,10 +40,10 @@ class SiteController extends Database{
 		global $server_root;
 		$id = $_GET['id'];
 		$site_name = $_POST['name'];
-		$site_url = $_POST['url'];
-		$footer = $_POST['footer'];
-		$limit = $_POST['limit'];
-		$file = $_FILES['logo'];
+		$site_url  = $_POST['url'];
+		$footer    = $_POST['footer'];
+		$limit     = $_POST['limit'];
+		$file      = $_FILES['logo'];
 		
 		if(!empty($_POST['name']) &&  !empty($_POST['url']) && !empty($_POST['footer'])){
 			$ext = pathinfo($file['name'], PATHINFO_EXTENSION);
@@ -55,15 +55,15 @@ class SiteController extends Database{
 
 			if(!empty($ext)){
 				$data = array(
-					'server_root'=>"$site_url",
-					'footer'=>"$footer",
-					'logo'=>"$newName",
-					'page_limit'=>"$limit",
-					'site_name'=>"$site_name"
+					'server_root' => "$site_url",
+					'footer'      => "$footer",
+					'logo'        => "$newName",
+					'page_limit'  => "$limit",
+					'site_name'   => "$site_name"
 				);
 
 				$criteria = array(
-					'id'=>"$id"
+					'id' => "$id"
 				);
 
 				if($this->update($this->table,$data,$criteria)){
@@ -73,10 +73,10 @@ class SiteController extends Database{
 				}
 			}else{
 				$data = array(
-					'server_root'=>"$site_url",
-					'footer'=>"$footer",
-					'site_name'=>"$site_name",
-					'page_limit'=>"$limit"
+					'server_root' => "$site_url",
+					'footer'      => "$footer",
+					'site_name'   => "$site_name",
+					'page_limit'  => "$limit"
 				);
 
 				$criteria = array(
@@ -98,14 +98,14 @@ class SiteController extends Database{
 		$data = array(
 			'*'
 		);
-		$result = $this->select($this->table_subscriber,$data);
+		$result         = $this->select($this->table_subscriber,$data);
 		$all_subscriber = $this->fetch($result);
 		return $all_subscriber;
 	}
 
 	public function delete_subscriber(){
 		global $server_root;
-		$id = $_POST['delete-subscriber'];
+		$id   = $_POST['delete-subscriber'];
 		$data = array(
 			'id'=>"$id"
 		);
@@ -130,14 +130,14 @@ class SiteController extends Database{
 	}
 
 	public function view_content(){
-		$data = ['*'];
-		$page = $this->select($this->table_page,$data);
-		$pages = count($this->fetch($page));
-		$post = $this->select($this->table_post,$data);
-		$posts = count($this->fetch($post));
-		$user = $this->select($this->table_user,$data);
-		$users = count($this->fetch($user));
-		$slider = $this->select($this->table_slider,$data);
+		$data    = ['*'];
+		$page    = $this->select($this->table_page,$data);
+		$pages   = count($this->fetch($page));
+		$post    = $this->select($this->table_post,$data);
+		$posts   = count($this->fetch($post));
+		$user    = $this->select($this->table_user,$data);
+		$users   = count($this->fetch($user));
+		$slider  = $this->select($this->table_slider,$data);
 		$sliders = count($this->fetch($slider));
 		return ['page'=>$pages,'post'=>$posts,'user'=>$users,'slider'=>$sliders];
 	}

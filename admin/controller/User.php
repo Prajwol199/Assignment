@@ -7,10 +7,10 @@ session_start();
 
 class User extends DatabaseController{
 
-	protected $tableName = 'pages';
-	protected $table = 'users';
-	protected $table_image='image';
-	protected $table_meta='meta';
+	protected $tableName   = 'pages';
+	protected $table       = 'users';
+	protected $table_image = 'image';
+	protected $table_meta  = 'meta';
 
 
 	public function __construct(){
@@ -40,13 +40,13 @@ class User extends DatabaseController{
 			'image_id'
 		);
 		$result = $this->view_image($data,$id);
-		$rows = $this->fetch($result);
+		$rows   = $this->fetch($result);
 		if(count($rows) > 0){
 			$get_id=[];
 			foreach ($rows as $key => $value) {
 				$get_id[] = $value['image_id'];
 			}
-			$images = $this->select_image_of_page($get_id);
+			$images     = $this->select_image_of_page($get_id);
 			$page_image = $this->fetch($images);
 			return $page_image;
 		}
@@ -54,9 +54,9 @@ class User extends DatabaseController{
 
 	public function isLoginUser(){
 		if(isset($_POST['email']) && isset($_POST['password'])){
-			$email=$_POST['email'];
-			$password=$_POST['password'];
-			$encrypt = md5($password);
+			$email    = $_POST['email'];
+			$password = $_POST['password'];
+			$encrypt  = md5($password);
 			if(isset($_POST['remember'])){
 				$remember=$_POST['remember'];
 			}
@@ -64,8 +64,8 @@ class User extends DatabaseController{
 		 		'*'
 		 		);
 		 	$field=array(
-		 		'email'=>"$email",
-		 		'password'=>"$encrypt"
+		 		'email'    => "$email",
+		 		'password' => "$encrypt"
 		 	);
 		 	$login = $this->loginSelect($data,$field);
 
@@ -75,9 +75,9 @@ class User extends DatabaseController{
                 	setcookie('email', $email, $hour);
                 	setcookie('password', $password, $hour);
             	}
-            	$_SESSION['login']="login";
-            	$_SESSION['user']="user";
-            	$_SESSION['welcome']="Welcome to Dashboard";
+            	$_SESSION['login']   = "login";
+            	$_SESSION['user']    = "user";
+            	$_SESSION['welcome'] = "Welcome to Dashboard";
 		 		header('Location:'.$server_root.'admin');
 		 	}else{
 		 		?><div class="alert alert-danger" style="margin-left: 460px; margin-right: 365px; margin-top: 100px; margin-bottom: -100px; padding-left: 150px;">Invalid email and password</div>
@@ -128,13 +128,13 @@ class User extends DatabaseController{
 			$id=$_POST['addPageImage'];
 			$file=$_FILES['file'];
 
-			$ext = pathinfo($file['name'], PATHINFO_EXTENSION);
- 			$name = md5(time() . rand());
- 			$newName =$name.'.'.$ext;
+			$ext     = pathinfo($file['name'], PATHINFO_EXTENSION);
+ 			$name    = md5(time() . rand());
+ 			$newName = $name.'.'.$ext;
  			$tmpName = $file['tmp_name'];
 
- 			$imagePath='../admin/static/images/pageImage/';
- 			$cropimagePath='../admin/static/images/cropImage/';
+ 			$imagePath     = '../admin/static/images/pageImage/';
+ 			$cropimagePath = '../admin/static/images/cropImage/';
  			if(!move_uploaded_file($tmpName,$imagePath. $newName)){
  				echo "Image not saved";
 			}
@@ -165,22 +165,22 @@ class User extends DatabaseController{
 
 			if(!empty($newName)){
  				$data=array(
- 					'image'=>"$newName",
- 					'crop'=>"$cropName"
+ 					'image' => "$newName",
+ 					'crop'  => "$cropName"
  				);
  				$this->imagesInsert($data);
  				$data=array(
 							'id'
 							);
  				$result = $this->imageId($data,$newName);
- 				$value = mysqli_fetch_assoc($result);
+ 				$value  = mysqli_fetch_assoc($result);
  				foreach ($value as $key => $image_id) {
  				}
  			}
  			$meta=array(
-				'page_type'=>'page',
-				'page_id'=>"$id",
-				'image_id'=>"$image_id"
+				'page_type' => 'page',
+				'page_id'   => "$id",
+				'image_id'  => "$image_id"
 	 			);
 
 			$meta_result = $this->meta_save($meta);
@@ -197,7 +197,7 @@ class User extends DatabaseController{
 			'*'
 		);
 		$field = $this->admin_manager_display($data);
-		$rows = $this->fetch($field);
+		$rows  = $this->fetch($field);
 		return $rows;
 	}
 	public function changePassword(){
@@ -205,17 +205,17 @@ class User extends DatabaseController{
 			$id=$_POST['edit-admin'];
 			echo "Old password and New password cannot be empty";
 		}else{
-			$id=$_POST['edit-admin'];
-			$oldPass=$_POST['opassword'];
+			$id         = $_POST['edit-admin'];
+			$oldPass    = $_POST['opassword'];
 			$oldencrypt = md5($oldPass);
-			$newpass = $_POST['npassword'];
+			$newpass    = $_POST['npassword'];
 			$newencrypt = md5($newpass);
 
 			$data=array(
 				'password'
 			);
 			$admin = $this->select_oldPassword($data,$id);
-			$rows = $this->fetch($admin);
+			$rows  = $this->fetch($admin);
 			foreach ($rows as $key => $value) {
 				$oldpassword =  $value['password'];
 			}

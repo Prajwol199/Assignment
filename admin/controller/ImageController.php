@@ -2,10 +2,10 @@
 require_once __dir__.'/DatabaseController.php';
 
 class ImageController extends DatabaseController{
-	protected $tableName = 'pages';
-	protected $table = 'users';
-	protected $table_image='image';
-	protected $table_meta='meta';
+	protected $tableName   = 'pages';
+	protected $table       = 'users';
+	protected $table_image = 'image';
+	protected $table_meta  = 'meta';
 
 	public function __construct(){
         parent::__construct();
@@ -24,15 +24,14 @@ class ImageController extends DatabaseController{
 			if($_FILES['file']['size'] == 0){
 				echo"File is empty";
 			}else{
-				$file = $_FILES['file'];
+				$file          = $_FILES['file'];
+				$ext           = pathinfo($file['name'], PATHINFO_EXTENSION);
+	 			$name          = md5(time() . rand());
+	 			$newName       = $name.'.'.$ext;
+	 			$tmpName       = $file['tmp_name'];
+	 			$imagePath     = '../admin/static/images/pageImage/';
+	 			$cropimagePath = '../admin/static/images/cropImage/';
 
-				$ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-	 			$name = md5(time() . rand());
-	 			$newName =$name.'.'.$ext;
-	 			$tmpName = $file['tmp_name'];
-
-	 			$imagePath='../admin/static/images/pageImage/';
-	 			$cropimagePath='../admin/static/images/cropImage/';
 	 			if(!move_uploaded_file($tmpName,$imagePath. $newName)){
 	 				echo "Image not saved";
 				}
@@ -64,8 +63,8 @@ class ImageController extends DatabaseController{
 
 				if(!empty($newName) && !empty($cropName)){
 	 				$data=array(
-	 					'image'=>"$newName",
-	 					'crop'=>"$cropName"
+	 					'image' => "$newName",
+	 					'crop'  => "$cropName"
 	 				);
 	 				$this->imagesInsert($data);
 	 			}

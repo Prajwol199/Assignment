@@ -8,6 +8,7 @@ require_once __dir__.'/../static/phpmailer/src/PHPMailer.php';
 require_once __dir__.'/../static/phpmailer/src/SMTP.php';
 
 require_once __dir__.'/../model/database.php';
+
 class RequestQuoteController extends Database{
 	protected $table = 'users';
 
@@ -24,7 +25,7 @@ class RequestQuoteController extends Database{
 		$lname = $_POST['lname'];
 		$phone = $_POST['phone'];
 		$email = $_POST['email'];
-		$date = $_POST['date'];
+		$date  = $_POST['date'];
 		if(isset($_POST['sex'])){
 			$sex = $_POST['sex'];
 		}
@@ -66,7 +67,7 @@ class RequestQuoteController extends Database{
 		}
 		if(!empty($_POST['service'])){
 			$service = $_POST['service'];
-			$ser = implode(",",$service);
+			$ser     = implode(",",$service);
 		}else{
 			echo $ser = 'NULL';
 		}
