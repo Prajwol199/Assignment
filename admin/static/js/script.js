@@ -118,4 +118,11 @@ function quoteValidate(){
     }
     return true;
 }
+$(document).ready(function(){
+  var headerHeight = $('.top-time').height();
+  var windowHeight = $(window).height();
+  var footerHeight = $('.footer').innerHeight();
+  var minHeight = windowHeight - ( headerHeight + footerHeight );
+  $('.content').css('min-height',(minHeight-30)+'px');
+})
 
